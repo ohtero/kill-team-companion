@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import { ContentSection } from '../components/UI/contentSection';
 import { ContentHeader } from '../components/UI/contentHeader';
 import { Form } from '../components/UI/form';
@@ -10,8 +9,6 @@ export function MatchLobby() {
 
   return (
     <ContentSection>
-      {/* <DisplayNameInput> */}
-      {/* <section className="content-section lobby-section"> */}
       <ContentHeader>MATCH LOBBY</ContentHeader>
       <section className="instructions">
         <h3></h3>
@@ -46,8 +43,6 @@ export function MatchLobby() {
           </button>
         </FormSection>
       </Form>
-      {/* </section> */}
-      {/* </DisplayNameInput> */}
     </ContentSection>
   );
 
