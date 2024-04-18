@@ -38,7 +38,6 @@ input, button, select {
 
 label {
   text-align: start;
-  // margin-bottom: 8px;
   color: white;
 }
 
