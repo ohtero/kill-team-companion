@@ -1,0 +1,85 @@
+version: '3.8'
+
+services:
+  frontend:
+    image: frontend
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: ./Dockerfile
+      target: dev
+    ports:
+      - '5173:5173'
+    develop:
+      watch:
+        - path: ./frontend
+          target: /app
+          action: sync
+          ignore:
+            - node_modules/
+    networks:
+      ktc_net:
+        ipv4_address: 192.168.200.5
+  backend:
+    image: backend
+    container_name: backend
+    build:
+      context: ./backend
+      dockerfile: ./Dockerfile
+      target: dev
+    ports:
+      - '3000:3000'
+    develop:
+      watch:
+        - path: ./backend
+          target: /app/backend
+          action: sync
+          ignore:
+            - node_modules/
+    env_file:
+      - path: ./backend/.env
+    networks:
+      ktc_net:
+        ipv4_address: 192.168.200.4
+
+  db:
+    image: postgres
+    container_name: postgres
+    ports:
+      - '5432:5432'
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ktc
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      ktc_net:
+        ipv4_address: 192.168.200.2
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - '5050:80'
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin/data
+    networks:
+      ktc_net:
+        ipv4_address: 192.168.200.3
+
+volumes:
+  postgres_data:
+  pgadmin_data:
+
+networks:
+  ktc_net:
+    ipam:
+      driver: default
+      config:
+        - subnet: '192.168.200.0/24'
+          gateway: 192.168.200.1

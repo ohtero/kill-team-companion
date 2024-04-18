@@ -1,0 +1,52 @@
+import { createGlobalStyle } from 'styled-components';
+
+export const GlobalStyles = createGlobalStyle`
+*, *:after, *:before {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  font-family: ${(props) => props.theme.paragFontFamily};
+}
+
+h1, h2, h3, input, button, select, option {
+  font-family: ${(props) => props.theme.headingFontFamily};
+}
+
+h1 {
+  letter-spacing: 0.5rem;
+}
+
+h2 {
+  // padding: 16px 0px;
+  // text-align: center;
+  // color: HSLA(${(props) => props.theme.colors.tertiary}, 1);
+  // text-shadow: ${(props) => props.theme.shadow.dark};
+}
+
+h2, h3 {
+  letter-spacing: 0.25rem;
+}
+
+input, button, select {
+  font-size: 1.5rem;
+  padding: 10px;
+}
+
+
+
+label {
+  text-align: start;
+  // margin-bottom: 8px;
+  color: white;
+}
+
+input[type="text"] {
+  font-size: 1.5rem;
+  padding: 8px 0;
+  padding-left: 8px;
+  // background: HSLA(${(props) => props.theme.colors.secondary}, 0.75);
+  border: 4px solid HSLA(${(props) => props.theme.colors.primary}, 0.5);
+}
+`;
