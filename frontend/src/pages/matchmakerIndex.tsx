@@ -7,6 +7,7 @@ import { ContentSection } from '../components/UI/contentSection';
 import { ContentHeader } from '../components/UI/contentHeader';
 import { Form } from '../components/UI/form';
 import { FormSection } from '../components/UI/formSection';
+import { ErrorMsg } from '../components/UI/errorMsg';
 
 enum Missions {
   select = 'Select...',
@@ -114,9 +115,9 @@ export default function MatchMainPage() {
                 <label htmlFor="matchName">
                   Match Name (Max 50 characters)
                 </label>
-                <p className="error">
+                <ErrorMsg>
                   {errors.matchName && errors.matchName.message}
-                </p>
+                </ErrorMsg>
               </div>
               <input
                 type="text"
@@ -191,9 +192,9 @@ export default function MatchMainPage() {
                 disabled={creationIsPending}
                 $orange
               />
-              <p className="error submit-error">
+              <ErrorMsg>
                 {errors.root?.serverError && errors.root.serverError.message}
-              </p>
+              </ErrorMsg>
             </FormSection>
           </Form>
         </ContentSection>
@@ -251,15 +252,5 @@ const MatchCreate = styled.section`
   .label-and-error {
     display: flex;
     gap: 16px;
-  }
-
-  .error {
-    height: 16px;
-    color: HSL(360, 100%, 90%);
-  }
-
-  .submit-error {
-    margin-top: 16px;
-    place-self: center;
   }
 `;
