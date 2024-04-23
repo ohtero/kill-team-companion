@@ -11,7 +11,7 @@ app.use(express.json());
 dotenv.config();
 
 const port = process.env.PORT || 3000;
-const connectionString = process.env.PGHOST;
+// const connectionString = process.env.PGHOST;
 
 const { Pool } = pg;
 
