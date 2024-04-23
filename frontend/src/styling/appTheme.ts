@@ -1,5 +1,5 @@
 import { DefaultTheme } from 'styled-components';
-import '../fonts.css';
+import '../assets/fonts.css';
 
 export const theme: DefaultTheme = {
   headingFontFamily: 'orbitron, lato, sans-serif',
