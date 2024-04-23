@@ -8,10 +8,11 @@ import {
 // Components
 import PageLayout from './components/layout/page-layout.tsx';
 import Homepage from './pages/homepage.tsx';
-import MatchMainPage from './pages/match-main-page.tsx';
+import MatchMainPage from './pages/matchmakerIndex.tsx';
 import NewMatchCreation from './pages/new-match-creation.tsx';
 import MatchMainSelection from './pages/match-main-selection.tsx';
-import ActiveMatchPage from './pages/active-match-page.tsx';
+import ActiveMatchPage from './pages/matchRoom/activeMatchMain.tsx';
+import { getMatchData } from './routeLoaders/getMatchData.ts';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,7 +22,7 @@ const router = createBrowserRouter(
         <Route path="new" element={<NewMatchCreation />} />
         <Route index element={<MatchMainSelection />} />
       </Route>
-      <Route path="match" element={<ActiveMatchPage />} />
+      <Route path="match" element={<ActiveMatchPage />} loader={getMatchData} />
     </Route>
   )
 );
