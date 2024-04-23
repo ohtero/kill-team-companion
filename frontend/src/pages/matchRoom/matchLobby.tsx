@@ -16,7 +16,8 @@ export function MatchLobby({
   playerInMatch,
   matchIsFull,
   updateMatchIsFull,
-  updatePlayerInMatch
+  updatePlayerInMatch,
+  updatePlayerNames
 }: MatchLobbyProps) {
   const navigate = useNavigate();
 
@@ -42,10 +43,8 @@ export function MatchLobby({
     const playerExists = Object.values(matchData).includes(name);
     if (playerExists && name !== null) {
       updatePlayerInMatch(true);
-    } else {
-      updatePlayerInMatch(false);
     }
-  }, [localNameData]);
+  }, []);
 
   const addPlayerDisplayName: SubmitHandler<MatchLobbyFormInput> = async (
     formData
@@ -77,6 +76,8 @@ export function MatchLobby({
         dispatchEvent(
           new StorageEvent('storage', { key: 'playerName', newValue: resData })
         );
+        updatePlayerInMatch(true);
+        updatePlayerNames(emptyPlayerSlot + 1, resData);
       } else if (res.status === 500) {
         throw new Error(resData);
       }

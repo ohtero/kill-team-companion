@@ -38,4 +38,5 @@ export interface MatchLobbyProps {
   matchIsFull: boolean;
   updateMatchIsFull: (arg: boolean) => void;
   updatePlayerInMatch: (arg: boolean) => void;
+  updatePlayerNames: (index: number, value: string) => void;
 }
