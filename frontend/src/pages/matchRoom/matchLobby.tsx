@@ -5,19 +5,16 @@ import { FormSection } from '../../components/UI/formSection';
 import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { MatchLobbyFormInput, MatchLobbyProps } from './types';
-import { findEmptyPlayerSlot } from './matchUtils/findEmptyPlayerSlot';
 import { useEffect } from 'react';
 import { ErrorMsg } from '../../components/UI/errorMsg';
 
 export function MatchLobby({
   matchId,
   matchData,
-  localNameData,
   playerInMatch,
   matchIsFull,
   updateMatchIsFull,
-  updatePlayerInMatch,
-  updatePlayerNames
+  updatePlayerInMatch
 }: MatchLobbyProps) {
   const navigate = useNavigate();
 
@@ -38,20 +35,10 @@ export function MatchLobby({
     }
   }, [matchData]);
 
-  useEffect(() => {
-    const name = localStorage.getItem('playerName');
-    const playerExists = Object.values(matchData).includes(name);
-    if (playerExists && name !== null) {
-      updatePlayerInMatch(true);
-    }
-  }, []);
-
   const addPlayerDisplayName: SubmitHandler<MatchLobbyFormInput> = async (
     formData
   ) => {
-    const emptyPlayerSlot = findEmptyPlayerSlot(matchData);
     const body = {
-      playerSlot: emptyPlayerSlot,
       playerName: formData.displayName
     };
 
@@ -77,7 +64,6 @@ export function MatchLobby({
           new StorageEvent('storage', { key: 'playerName', newValue: resData })
         );
         updatePlayerInMatch(true);
-        updatePlayerNames(emptyPlayerSlot + 1, resData);
       } else if (res.status === 500) {
         throw new Error(resData);
       }
