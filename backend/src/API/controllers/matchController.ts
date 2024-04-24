@@ -1,58 +1,74 @@
 import { Request, Response } from 'express';
-import { nanoid } from 'nanoid';
+import {
+  addMatchId,
+  addPlayerToMatch,
+  getMatchDataFromDb
+} from '../../services/matchServices';
+import { AppError } from '../../classExtensions/errorExtension';
 
 async function createMatch(req: Request, res: Response): Promise<void> {
-  const client = req.dbClient;
-  const matchName: string = req.body;
-  const matchId: string = nanoid(10);
-  const values = [matchId, matchName];
   try {
-    await client?.query(
-      'INSERT INTO matches (match_id, match_name) VALUES ($1, $2)',
-      values
-    );
-    res.status(200).json(matchId);
+    const dbResponse = await addMatchId(req);
+    if (dbResponse) {
+      res.status(200).json(dbResponse);
+    } else {
+      throw new AppError(
+        'dbError',
+        'Database Failure! Match id could not be created.'
+      );
+    }
   } catch (err) {
-    console.log(err);
-    res.status(500).json('Server failed to create match.');
-  } finally {
-    client?.release();
+    const error = err as Error;
+    const message =
+      error.name === 'dbError'
+        ? error.message
+        : 'Server error! Match could not be created..';
+    res.status(500).json(message);
+    console.log('MATCH CREATION ERROR: ' + err);
   }
 }
 
-async function getMatchData(req: Request, res: Response) {
-  const client = req.dbClient;
-  const matchId = req.params.matchId;
-  const query = {
-    text: 'SELECT * FROM matches WHERE (match_id) = ($1)',
-    values: [matchId]
-  };
+async function getMatchData(req: Request, res: Response): Promise<void> {
   try {
-    const data = await client?.query(query);
-    res.status(200).json(data?.rows);
+    const dbResponse = await getMatchDataFromDb(req);
+    if (dbResponse) {
+      res.status(200).json(dbResponse);
+    } else {
+      throw new AppError(
+        'dbError',
+        'Database failure! Match data could not be fetched.'
+      );
+    }
   } catch (err) {
-    console.log(err);
-    res.status(500).json('Server failed to fetch match data.');
+    const error = err as Error;
+    const message =
+      error.name === 'dbError'
+        ? error.message
+        : 'Server error! Player could not be added.';
+    res.status(500).json(message);
+    console.log('MATCH DATA FETCHING ERROR: ' + err);
   }
 }
 
-async function addNewPlayer(req: Request, res: Response) {
-  const client = req.dbClient;
-  const matchId = req.params.matchId;
-  const { playerName, playerSlot } = req.body;
-  const player = `player${playerSlot + 1}_name`;
-  const query = {
-    text: `UPDATE matches SET ${player} = $1 WHERE match_id = $2 RETURNING ${player}`,
-
-    values: [playerName, matchId]
-  };
+async function addNewPlayer(req: Request, res: Response): Promise<void> {
   try {
-    const data = await client?.query(query);
-    const name = Object.values(data?.rows[0])[0];
-    res.status(200).json(name);
+    const dbResponse = await addPlayerToMatch(req);
+    if (dbResponse) {
+      res.status(200).json(dbResponse);
+    } else {
+      throw new AppError(
+        'dbError',
+        'Database failure! Player could not be added.'
+      );
+    }
   } catch (err) {
-    console.log(err);
-    res.status(500).json('Server failed to add player.');
+    const error = err as Error;
+    const message =
+      error.name === 'dbError'
+        ? error.message
+        : 'Server error! Player could not be added.';
+    res.status(500).json(message);
+    console.log('NEW PLAYER ADDITION ERROR: ' + error.stack);
   }
 }
 
