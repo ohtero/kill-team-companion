@@ -17,6 +17,8 @@ export async function getMatchDataFromDb(
   } catch (err) {
     console.log(err);
     return null;
+  } finally {
+    client?.release();
   }
 }
 
@@ -43,7 +45,6 @@ export async function addPlayerToMatch(req: Request): Promise<string | null> {
   const client = req.dbClient;
   const { matchId } = req.params;
   const { playerName } = req.body;
-  console.log(matchId);
   const query = {
     text: `
       UPDATE matches 
@@ -96,10 +97,8 @@ export async function addPlayerToMatch(req: Request): Promise<string | null> {
     values: [playerName, matchId]
   };
   try {
-    const data = await client?.query(query);
-    console.log(data?.rows);
-    // const arr = Object.values(data?.rows[0])[0] as string;
-    return 'success';
+    await client?.query(query);
+    return playerName;
   } catch (err) {
     console.log(err);
     return null;
