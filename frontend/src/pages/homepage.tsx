@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Device } from '../config/breakpoints';
+import { Device } from '../globalStyling/breakpoints';
 import { ToolCard } from '../components/tool-card';
 import { ContentSection } from '../components/UI/contentSection';
 import { ContentHeader } from '../components/UI/contentHeader';
