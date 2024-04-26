@@ -1,21 +1,21 @@
-import { ContentSection } from '../../components/UI/contentSection';
-import { ContentHeader } from '../../components/UI/contentHeader';
-import { Form } from '../../components/UI/form';
-import { FormSection } from '../../components/UI/formSection';
+import { ContentSection } from '../../../components/UI/contentSection';
+import { ContentHeader } from '../../../components/UI/contentHeader';
+import { Form } from '../../../components/UI/form';
+import { FormSection } from '../../../components/UI/formSection';
 import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { MatchLobbyFormInput, MatchLobbyProps } from './types';
+import { MatchEntryFormInput, MatchEntryProps } from '../types';
 import { useEffect } from 'react';
-import { ErrorMsg } from '../../components/UI/errorMsg';
+import { ErrorMsg } from '../../../components/UI/errorMsg';
 
-export function MatchLobby({
+export function MatchEntry({
   matchId,
   matchData,
   playerInMatch,
   matchIsFull,
   updateMatchIsFull,
   updatePlayerInMatch
-}: MatchLobbyProps) {
+}: MatchEntryProps) {
   const navigate = useNavigate();
 
   const {
@@ -23,7 +23,7 @@ export function MatchLobby({
     handleSubmit,
     setError,
     formState: { errors }
-  } = useForm<MatchLobbyFormInput>({
+  } = useForm<MatchEntryFormInput>({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     delayError: 500
@@ -35,7 +35,7 @@ export function MatchLobby({
     }
   }, [matchData]);
 
-  const addPlayerDisplayName: SubmitHandler<MatchLobbyFormInput> = async (
+  const addPlayerDisplayName: SubmitHandler<MatchEntryFormInput> = async (
     formData
   ) => {
     const body = {
