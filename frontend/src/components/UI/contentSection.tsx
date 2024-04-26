@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-export function ContentSection({ children }: GenericProps) {
-  return <Section>{children}</Section>;
+export function ContentSection({ children, className }: ContentSectionProps) {
+  return <Section className={className}>{children}</Section>;
 }
 
 const Section = styled.section`
