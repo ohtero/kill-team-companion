@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
-import './styling/index.css';
-import { GlobalStyles } from './styling/globalStyles.ts';
+import { GlobalStyles } from './globalStyling/globalStyles.ts';
 import { ThemeProvider } from 'styled-components';
-import { theme } from './styling/appTheme.ts';
+import { theme } from './globalStyling/appTheme.ts';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
