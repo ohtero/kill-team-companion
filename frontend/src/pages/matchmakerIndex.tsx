@@ -53,7 +53,7 @@ export default function MatchMainPage() {
 
       if (res.status === 200) {
         const data = await res.json();
-        navigateToMatchLobby(data);
+        navigateToMatchEntry(data);
       } else {
         throw new Error(`Could not create match! Status: ${res.status}`);
       }
@@ -69,7 +69,7 @@ export default function MatchMainPage() {
     }
   };
 
-  function navigateToMatchLobby(matchId: string) {
+  function navigateToMatchEntry(matchId: string) {
     navigate({
       pathname: '/match',
       search: `?${createSearchParams([['id', matchId]])}`
