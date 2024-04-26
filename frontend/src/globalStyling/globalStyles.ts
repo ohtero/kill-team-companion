@@ -10,12 +10,12 @@ export const GlobalStyles = createGlobalStyle`
   font-family: ${(props) => props.theme.paragFontFamily};
 }
 
-h1, h2, h3, input, button, select, option {
+h1, h2, h3, h4 input, button, select, option {
   font-family: ${(props) => props.theme.headingFontFamily};
 }
 
 h1 {
-  letter-spacing: 0.5rem;
+  letter-spacing: 8px;
 }
 
 h2 {
@@ -25,8 +25,8 @@ h2 {
   // text-shadow: ${(props) => props.theme.shadow.dark};
 }
 
-h2, h3 {
-  letter-spacing: 0.25rem;
+h2, h3, h4 {
+  letter-spacing: 5px;
 }
 
 input, button, select {
@@ -34,7 +34,9 @@ input, button, select {
   padding: 10px;
 }
 
-
+button {
+  cursor: pointer;
+}
 
 label {
   text-align: start;

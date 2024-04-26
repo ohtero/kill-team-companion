@@ -8,7 +8,7 @@ export const theme: DefaultTheme = {
     primary: '220, 15%, 30%',
     secondary: '220, 20%, 40%',
     // secondary: '220, 19%, 46%',
-    secondaryLight: '220, 20%, 90%',
+    secondaryLight: '220, 20%, 60%',
     // secondaryLight: '220, 19%, 60%',
     tertiary: '32, 100%, 52%',
     tertiaryLight: '32, 100%, 75%'
