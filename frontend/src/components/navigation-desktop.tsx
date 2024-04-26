@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { Device } from '../config/breakpoints';
+import { Device } from '../globalStyling/breakpoints';
 
 export function DesktopNavigation() {
   return (

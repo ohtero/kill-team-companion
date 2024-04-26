@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { TopNavLink } from './styling/top-nav-link';
-import { Device } from '../config/breakpoints';
+import { Device } from '../globalStyling/breakpoints';
 import { useState } from 'react';
 import { MobileMenu } from './mobile-menu';
 import { HamburgerMenu } from '../assets/icons/hamburger-menu';

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Device } from '../config/breakpoints';
+import { Device } from '../globalStyling/breakpoints';
 
 type Props = {
   children: React.ReactNode;
