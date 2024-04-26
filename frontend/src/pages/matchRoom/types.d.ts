@@ -1,8 +1,8 @@
-export interface MatchLobbyFormInput {
+export interface MatchEntryFormInput {
   displayName: string;
 }
 
-export interface MatchLobbyProps {
+export interface MatchEntryProps {
   matchId: string | null;
   matchData: MatchData;
   localNameData: string | null;
