@@ -2,28 +2,37 @@ import { MatchEntry } from './features/matchEntry';
 import { useState, useEffect } from 'react';
 import { useLocation, useLoaderData } from 'react-router-dom';
 import { useSyncLocalStorage } from '../../hooks/useSyncLocalStorage';
-import { MatchData } from '../../types/databaseTypes';
-import { MatchFeaturesView } from './features/matchFeaturesView';
+import { NormalizedMatchData } from '../../types/databaseTypes';
+import { MatchFeaturesView } from './components/matchFeaturesView';
+import { useMatchContext } from './context/matchContext';
 import { useWebSocket } from './hooks/useWebSocket';
 
 export default function ActiveMatchPage() {
   const socket = useWebSocket('http://localhost:3000');
   const location = useLocation();
-  const data = useLoaderData() as [MatchData];
+  const localNameData = useSyncLocalStorage('playerName');
+  const normalizedMatchData = useLoaderData() as NormalizedMatchData;
+  const {
+    matchData,
+    updateMatchData,
+    updateSocket,
+    updatePlayerPoints,
+    updatePlayerName,
+    updateTurnCount
+  } = useMatchContext();
 
   const searchParams = new URLSearchParams(location.search);
   const matchId = searchParams.get('id');
 
-  const localNameData = useSyncLocalStorage('playerName');
-
   const [matchIsFull, setMatchIsFull] = useState(false);
-  const [matchData, setMatchData] = useState<MatchData>(data[0]);
   const [playerInMatch, setPlayerInMatch] = useState(false);
 
   useEffect(() => {
-    const name = localStorage.getItem('playerName');
-    const playerExists = Object.values(matchData).includes(name);
-    if (playerExists && name !== null) {
+    const playerNames = Object.values(normalizedMatchData.players).map(
+      (player) => player.name
+    );
+    const storedName = localStorage.getItem('playerName');
+    if (storedName !== null && playerNames.includes(storedName)) {
       updatePlayerInMatch(true);
     }
   }, []);
@@ -115,7 +124,7 @@ export default function ActiveMatchPage() {
           socket={socket}
         />
       ) : (
-        <MatchFeaturesView></MatchFeaturesView>
+        <MatchFeaturesView />
       )}
     </>
   );
