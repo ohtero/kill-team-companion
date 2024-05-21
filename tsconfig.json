@@ -18,7 +18,8 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "types": ["vitest/jsdom", "vitest/globals", "@testing-library/jest-dom"]
   },
   "include": ["frontend", "backend", "eslint.config.js"],
   "references": [{ "path": "./frontend/tsconfig.node.json" }]
