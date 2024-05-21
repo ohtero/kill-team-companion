@@ -1,16 +1,9 @@
 import styled from 'styled-components';
 import { Device } from '../../../globalStyling/breakpoints';
 import { FeatureTab } from './featureTab';
-import { useState } from 'react';
-import { TabName } from './types';
+import { TabNavProps } from '../types';
 
-export function FeatureTabsNavbar() {
-  const [activeTab, setActiveTab] = useState<TabName>('details');
-
-  function updateActiveTab(tabName: TabName) {
-    setActiveTab(tabName);
-  }
-
+export function FeatureTabsNavbar({ activeTab, updateActiveTab }: TabNavProps) {
   return (
     <FeatureTabs>
       <FeatureTab
