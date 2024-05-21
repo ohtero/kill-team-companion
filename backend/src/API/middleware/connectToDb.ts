@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { pool } from '../../../index.ts';
+import { PoolClient } from 'pg';
 
 export default async function connectToDb(
   req: Request,
@@ -14,5 +15,13 @@ export default async function connectToDb(
     res.status(500);
     console.error('Failed db connection:', err);
     return;
+  }
+}
+export async function connectToPool(): Promise<PoolClient | null> {
+  try {
+    return await pool.connect();
+  } catch (err) {
+    console.error('Failed db connection:', err);
+    return null;
   }
 }
