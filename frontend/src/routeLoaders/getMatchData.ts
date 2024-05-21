@@ -1,9 +1,13 @@
 import { LoaderFunctionArgs } from 'react-router-dom';
-import { MatchData } from '../pages/matchRoom/types';
+import {
+  RawMatchData,
+  NormalizedMatchData
+} from '../../src/types/databaseTypes';
+import { normalizeMatchData } from '../pages/matchRoom/matchUtils/normalizeMatchData';
 
 export async function getMatchData({
   request
-}: LoaderFunctionArgs): Promise<[MatchData] | string | undefined> {
+}: LoaderFunctionArgs): Promise<NormalizedMatchData | string | undefined> {
   const url = new URL(request.url);
   const matchId = url.searchParams.get('id');
   try {
@@ -15,8 +19,9 @@ export async function getMatchData({
       }
     );
     if (res.ok) {
-      const data: [MatchData] = await res.json();
-      return data;
+      const data: [RawMatchData] = await res.json();
+      const normalizedData = normalizeMatchData(data[0]);
+      return normalizedData;
     }
   } catch (error) {
     return 'Failed to fetch match data.';
