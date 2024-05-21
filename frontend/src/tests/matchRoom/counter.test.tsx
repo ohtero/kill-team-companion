@@ -10,10 +10,10 @@ describe('Player point counter', () => {
   it('should create a counter displaying a player point', () => {
     render(
       <MatchDataContext.Provider value={mockMatchDataContextValue}>
-        <Counter points={3} playerIndex={1} pointType="cp" />
+        <Counter points={3} playerIndex={0} pointType="cp" />
       </MatchDataContext.Provider>
     );
-    const points = screen.getByRole('player-points');
+    const points = screen.getByRole('player1cp');
     expect(points.textContent).toBe('3');
   });
 
