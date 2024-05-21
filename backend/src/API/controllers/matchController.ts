@@ -54,7 +54,7 @@ async function addNewPlayer(req: Request, res: Response): Promise<void> {
   try {
     const dbResponse = await addPlayerToMatch(req);
     if (dbResponse) {
-      res.status(200).json(dbResponse);
+      res.status(200).json(dbResponse.playerName);
     } else {
       throw new AppError(
         'dbError',
@@ -72,4 +72,56 @@ async function addNewPlayer(req: Request, res: Response): Promise<void> {
   }
 }
 
-export { createMatch, getMatchData, addNewPlayer };
+// async function modifyPlayerPoints(req: Request, res: Response): Promise<void> {
+//   try {
+//     const dbResponse = await modifyPointsInDb(req);
+//     if (dbResponse) {
+//       res.status(200).json();
+//       io.on('connection', (socket) => {
+//         io.emit('playerPointsUpdate', dbResponse);
+//       });
+//     } else {
+//       throw new AppError(
+//         'dbError',
+//         'Database failure! Player could not be added.'
+//       );
+//     }
+//   } catch (error) {
+//     const err = error as Error;
+//     const message =
+//       err.name === 'dbError'
+//         ? err.message
+//         : 'Server error! Player could not be added.';
+//     res.status(500).json(message);
+//   }
+// }
+
+// async function modifyTurnCount(req: Request, res: Response): Promise<void> {
+//   try {
+//     const dbResponse = await updateTurnCountToDb(req);
+//     if (dbResponse) {
+//       res.status(200).json(dbResponse);
+//       // io.emit('turnCountUpdate', dbResponse);
+//     } else {
+//       throw new AppError(
+//         'dbError',
+//         'Database failure! Player could not be added.'
+//       );
+//     }
+//   } catch (error) {
+//     const err = error as Error;
+//     const message =
+//       err.name === 'dbError'
+//         ? err.message
+//         : 'Server error! Player could not be added.';
+//     res.status(500).json(message);
+//   }
+// }
+
+export {
+  createMatch,
+  getMatchData,
+  addNewPlayer
+  // modifyPlayerPoints,
+  // modifyTurnCount
+};
