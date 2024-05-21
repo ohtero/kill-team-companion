@@ -15,25 +15,25 @@ const defaultMatchData: NormalizedMatchData = {
   players: {
     player1: {
       id: '',
-      name: '',
+      name: 'player1',
       cp: 3,
       vp: 0
     },
     player2: {
       id: '',
-      name: '',
+      name: 'player2',
       cp: 3,
       vp: 0
     },
     player3: {
       id: '',
-      name: '',
+      name: 'player3',
       cp: 3,
       vp: 0
     },
     player4: {
       id: '',
-      name: '',
+      name: 'player4',
       cp: 3,
       vp: 0
     }
@@ -45,7 +45,7 @@ const defaultMatchData: NormalizedMatchData = {
   draw: false
 };
 
-const defaultContext = {
+export const defaultContext = {
   matchData: defaultMatchData,
   updateMatchData: () => {},
   updateSocket: () => {},
