@@ -4,8 +4,10 @@ import { useLocation, useLoaderData } from 'react-router-dom';
 import { useSyncLocalStorage } from '../../hooks/useSyncLocalStorage';
 import { MatchData } from '../../types/databaseTypes';
 import { MatchFeaturesView } from './features/matchFeaturesView';
+import { useWebSocket } from './hooks/useWebSocket';
 
 export default function ActiveMatchPage() {
+  const socket = useWebSocket('http://localhost:3000');
   const location = useLocation();
   const data = useLoaderData() as [MatchData];
 
@@ -26,6 +28,71 @@ export default function ActiveMatchPage() {
     }
   }, []);
 
+  useEffect(() => {
+    if (matchData.players.player4.name !== null) {
+      updateMatchIsFull(true);
+      return;
+    }
+    setMatchIsFull(false);
+  }, [matchData]);
+
+  useEffect(() => {
+    console.log('active match page rendered');
+  }, []);
+
+  useEffect(() => {
+    updateMatchData(normalizedMatchData);
+  }, [normalizedMatchData]);
+
+  useEffect(() => {
+    socket?.emit('joinRoom', matchData.matchId);
+    socket?.on(
+      'updatePlayerPoints',
+      (data: {
+        playerIndex: number;
+        newPoints: number;
+        pointType: 'vp' | 'cp';
+      }) => {
+        updatePlayerPoints(data.playerIndex, data.newPoints, data.pointType);
+      }
+    );
+    socket?.on('playerName', (playerName: string) => {
+      updatePlayerName(playerName);
+    });
+    socket?.on('turningPointUpdate', (modType: 'add' | 'subtract') => {
+      console.log(`turning point update received by ${socket.id}`);
+      updateTurnCount(modType);
+    });
+    socket?.on('disconnect', () =>
+      console.log(`socket ${socket.id} disconnecting`)
+    );
+    socket?.on('connect', () => {
+      updateSocket(socket);
+    });
+
+    return () => {
+      socket?.off(
+        'updatePlayerPoints',
+        (data: {
+          playerIndex: number;
+          newPoints: number;
+          pointType: 'vp' | 'cp';
+        }) => {
+          updatePlayerPoints(data.playerIndex, data.newPoints, data.pointType);
+        }
+      );
+      socket?.off('playerName', (playerName: string) => {
+        updatePlayerName(playerName);
+      });
+      socket?.off('turningPointUpdate', (modType: 'add' | 'subtract') => {
+        updateTurnCount(modType);
+      });
+      socket?.off('connect', () => {
+        updateSocket(socket);
+      });
+    };
+  }, [socket]);
+
   function updatePlayerInMatch(state: boolean) {
     setPlayerInMatch(state);
   }
@@ -45,6 +112,7 @@ export default function ActiveMatchPage() {
           matchIsFull={matchIsFull}
           updatePlayerInMatch={updatePlayerInMatch}
           updateMatchIsFull={updateMatchIsFull}
+          socket={socket}
         />
       ) : (
         <MatchFeaturesView></MatchFeaturesView>
