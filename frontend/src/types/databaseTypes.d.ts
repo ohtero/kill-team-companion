@@ -1,4 +1,4 @@
-export interface MatchData {
+export interface RawMatchData {
   match_id: string;
   match_name: string;
   mission_id: number;
@@ -23,5 +23,25 @@ export interface MatchData {
   turning_point: number;
   winner_id: string;
   winner_name: string;
+  draw: boolean;
+}
+
+export interface NormalizedMatchData {
+  matchId: string;
+  matchName: string;
+  missionId: number;
+  active: boolean;
+  date: string; // Check if Date type is needed later
+  turningPoint: number;
+  players: {
+    player1: { id: string; name: string; cp: number; vp: number };
+    player2: { id: string; name: string; cp: number; vp: number };
+    player3: { id: string; name: string; cp: number; vp: number };
+    player4: { id: string; name: string; cp: number; vp: number };
+  };
+  winner: {
+    id: string;
+    name: string;
+  };
   draw: boolean;
 }
