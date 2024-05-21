@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Device } from '../../../globalStyling/breakpoints';
-import { FeatureTabProps, TabName } from './types';
+import { FeatureTabProps, TabName } from '../types';
 
 export function FeatureTab({
   children,
