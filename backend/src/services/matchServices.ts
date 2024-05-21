@@ -1,6 +1,7 @@
 import { Request } from 'express';
 import { nanoid } from 'nanoid';
 import { MatchData } from '../types/databaseTypes';
+import { connectToPool } from '../API/middleware/connectToDb';
 
 export async function getMatchDataFromDb(
   req: Request
@@ -41,7 +42,9 @@ export async function addMatchId(req: Request): Promise<string | null> {
   }
 }
 
-export async function addPlayerToMatch(req: Request): Promise<string | null> {
+export async function addPlayerToMatch(
+  req: Request
+): Promise<{ playerName: string; matchId: string } | null> {
   const client = req.dbClient;
   const { matchId } = req.params;
   const { playerName } = req.body;
@@ -91,16 +94,89 @@ export async function addPlayerToMatch(req: Request): Promise<string | null> {
           END
       WHERE 
         match_id = ($2)
-      RETURNING *
         `,
 
     values: [playerName, matchId]
   };
   try {
     await client?.query(query);
-    return playerName;
+    return { playerName: playerName, matchId: matchId };
   } catch (err) {
     console.log(err);
+    return null;
+  } finally {
+    client?.release();
+  }
+}
+
+export async function modifyPointsInDb(
+  matchId: string,
+  playerIndex: number,
+  point: string,
+  type: string
+): Promise<{} | null> {
+  const client = await connectToPool();
+  const playerPointCol = `player${playerIndex + 1}_${point}`;
+  const text =
+    type === 'add'
+      ? `UPDATE matches SET ${playerPointCol} = ${playerPointCol} + 1 WHERE match_id = ($1) RETURNING ${playerPointCol}`
+      : `UPDATE matches SET ${playerPointCol} = ${playerPointCol}  - 1 WHERE match_id = ($1) RETURNING ${playerPointCol}`;
+  const query = {
+    text: text,
+    values: [matchId]
+  };
+  try {
+    const data = await client?.query(query);
+    const pointData = Object.values(data?.rows[0])[0] as number;
+    const playerPointData = {
+      playerIndex: playerIndex,
+      newPoints: pointData,
+      pointType: point
+    };
+    return playerPointData;
+  } catch (error) {
+    console.log(error);
+    return null;
+  } finally {
+    client?.release();
+  }
+}
+
+export async function updateTurnCountToDb(
+  matchId: string,
+  modType: string
+): Promise<string | null> {
+  const client = await connectToPool();
+  const text =
+    modType === 'add'
+      ? `
+        UPDATE matches 
+        SET 
+          turning_point = turning_point + 1,
+          player1_cp = player1_cp + 1, 
+          player2_cp = player2_cp + 1, 
+          player3_cp = player3_cp + 1, 
+          player4_cp = player4_cp + 1
+        WHERE 
+          match_id = ($1) 
+        `
+      : `
+      UPDATE matches 
+      SET 
+        turning_point = turning_point - 1, 
+        player1_cp = player1_cp - 1, 
+        player2_cp = player2_cp - 1, 
+        player3_cp = player3_cp - 1, 
+        player4_cp = player4_cp - 1
+      WHERE 
+        match_id = ($1) 
+      `;
+
+  try {
+    await client?.query(text, [matchId]);
+    return 'success';
+  } catch (error) {
+    console.log(error);
     return null;
   } finally {
     client?.release();
