@@ -8,10 +8,9 @@ import {
 // Components
 import PageLayout from './components/layout/page-layout.tsx';
 import Homepage from './pages/homepage.tsx';
-import MatchMainPage from './pages/matchmakerIndex.tsx';
+import MatchMainPage from './pages/matchmakerMain/matchmakerIndex.tsx';
 import ActiveMatchPage from './pages/matchRoom/activeMatchPage.tsx';
 import { getMatchData } from './routeLoaders/getMatchData.ts';
-
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<PageLayout />}>
@@ -27,11 +26,3 @@ function App() {
 }
 
 export default App;
-
-/**
- * /home
- * /match
- * /match/new
- * /match/join
- * match/active/?Id=1234
- */
