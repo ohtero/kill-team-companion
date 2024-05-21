@@ -8,16 +8,19 @@ export function Counter({ points, playerIndex, pointType }: PlayerPoint) {
     <CounterContainer>
       <div className="wrapper">
         <button
+          aria-label={`add ${pointType} to player${playerIndex + 1}`}
           className="add-point"
           onClick={() => modifyPlayerPoints(playerIndex, pointType, 'add')}
         >
           +
         </button>
         <div className="point-display">
-          <output role="player-points">{points}</output>
+          <output role={`player${playerIndex + 1}${pointType}`}>
+            {points}
+          </output>
         </div>
         <button
-          name="subtractPoint"
+          aria-label={`subtract ${pointType} from player${playerIndex + 1}`}
           className="sub-point"
           onClick={() =>
             points > 0 && modifyPlayerPoints(playerIndex, pointType, 'subtract')
