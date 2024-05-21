@@ -42,14 +42,18 @@ export function PlayerCounters() {
   return (
     <PlayerCountersContainer>
       <h4>Player Points</h4>
-      <div className="player-names">{playerNames}</div>
+      <section className="player-names">{playerNames}</section>
       <CounterSection>
         <h5>Command Points</h5>
-        <div className="counters">{createPointCounters('commandPoint')}</div>
+        <section className="counters">
+          {createPointCounters('commandPoint')}
+        </section>
       </CounterSection>
       <CounterSection>
         <h5>Victory Points</h5>
-        <div className="counters">{createPointCounters('victoryPoint')}</div>
+        <section className="counters">
+          {createPointCounters('victoryPoint')}
+        </section>
       </CounterSection>
     </PlayerCountersContainer>
   );
