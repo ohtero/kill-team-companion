@@ -1,15 +1,23 @@
 import styled from 'styled-components';
 import { ContentSection } from '../../../components/UI/contentSection';
 import { ContentHeader } from '../../../components/UI/contentHeader';
+import { useMatchContext } from '../context/matchContext';
 
 export function MatchDetails() {
+  const { matchData } = useMatchContext();
+  const playerNames = Object.values(matchData.players).map((player, index) => {
+    if (player.name) {
+      return <li key={index}>{player.name}</li>;
+    }
+  });
+
   return (
     <MatchInfo>
-      <ContentHeader>Match name</ContentHeader>
+      <ContentHeader>{matchData.matchName}</ContentHeader>
       <div className="info">
         <div className="sub-info">
           <p>Match Id:</p>
-          <p>1234567890</p>
+          <p>{matchData.matchId}</p>
         </div>
         <div className="sub-info">
           <p>Match Link:</p>
@@ -18,12 +26,7 @@ export function MatchDetails() {
       </div>
       <Players>
         <h4>PLAYERS</h4>
-        <ul>
-          <li>short Name</li>
-          <li>a little longer name</li>
-          <li>a very long name that is long</li>
-          <li>name</li>
-        </ul>
+        <ul>{playerNames}</ul>
       </Players>
     </MatchInfo>
   );
