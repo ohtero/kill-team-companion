@@ -11,7 +11,8 @@ import { socketListeners } from './src/webSockets/matchListeners.ts';
 const app = express();
 const server = createServer(app);
 export const io = new Server(server, {
-  cors: { origin: 'http://localhost:5173' }
+  cors: { origin: 'http://localhost:5173' },
+  connectionStateRecovery: {}
 });
 
 app.use(express.json());
