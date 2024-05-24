@@ -1,13 +1,13 @@
 import { createContext, useContext, useState } from 'react';
-import { useImmer } from 'use-immer';
-import { MatchContext } from '../types';
-import { NormalizedMatchData } from '../../../types/databaseTypes';
 import { Socket } from 'socket.io-client';
+import { useImmer } from 'use-immer';
+import { NormalizedMatchData } from '../../../types/databaseTypes';
+import { MatchContext } from '../types';
 import { changeTurnAndPoints } from './matchContextUtils';
 
 const defaultMatchData: NormalizedMatchData = {
-  matchId: '',
-  matchName: '',
+  matchId: 'abcde12345',
+  matchName: 'default name',
   missionId: NaN,
   active: false,
   date: '',
