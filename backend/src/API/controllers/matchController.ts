@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import {
-  addMatchId,
+  insertNewMatchData,
   addPlayerToMatch,
   getMatchDataFromDb
 } from '../../services/matchServices';
@@ -8,7 +8,7 @@ import { AppError } from '../../classExtensions/errorExtension';
 
 async function createMatch(req: Request, res: Response): Promise<void> {
   try {
-    const dbResponse = await addMatchId(req);
+    const dbResponse = await insertNewMatchData(req);
     if (dbResponse) {
       res.status(200).json(dbResponse);
     } else {
