@@ -4,7 +4,11 @@ import { TurnIndicatorProps } from '../types';
 export function TurnIndicator({ currentTurn, turnValue }: TurnIndicatorProps) {
   return (
     <>
-      <Indicator $currentTurn={currentTurn} $ownTurn={turnValue}>
+      <Indicator
+        aria-label={`turn${turnValue}Indicator`}
+        $currentTurn={currentTurn}
+        $ownTurn={turnValue}
+      >
         {turnValue}
       </Indicator>
     </>
