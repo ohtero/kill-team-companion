@@ -5,21 +5,14 @@ import { useSyncLocalStorage } from '../../hooks/useSyncLocalStorage';
 import { NormalizedMatchData } from '../../types/databaseTypes';
 import { MatchFeaturesView } from './components/matchFeaturesView';
 import { useMatchContext } from './context/matchContext';
-import { useWebSocket } from './hooks/useWebSocket';
+import { useMatchWebSocket } from './hooks/useMatchWebSocket';
 
 export default function ActiveMatchPage() {
-  const socket = useWebSocket('http://localhost:3000');
+  const socket = useMatchWebSocket('http://localhost:3000');
   const location = useLocation();
   const localNameData = useSyncLocalStorage('playerName');
   const normalizedMatchData = useLoaderData() as NormalizedMatchData;
-  const {
-    matchData,
-    updateMatchData,
-    updateSocket,
-    updatePlayerPoints,
-    updatePlayerName,
-    updateTurnCount
-  } = useMatchContext();
+  const { matchData, updateMatchData } = useMatchContext();
 
   const searchParams = new URLSearchParams(location.search);
   const matchId = searchParams.get('id');
@@ -51,51 +44,6 @@ export default function ActiveMatchPage() {
 
   useEffect(() => {
     socket?.emit('joinRoom', matchData.matchId);
-    socket?.on(
-      'updatePlayerPoints',
-      (data: {
-        playerIndex: number;
-        newPoints: number;
-        pointType: 'vp' | 'cp';
-      }) => {
-        updatePlayerPoints(data.playerIndex, data.newPoints, data.pointType);
-      }
-    );
-    socket?.on('playerName', (playerName: string) => {
-      updatePlayerName(playerName);
-    });
-    socket?.on('turningPointUpdate', (modType: 'add' | 'subtract') => {
-      console.log(`turning point update received by ${socket.id}`);
-      updateTurnCount(modType);
-    });
-    socket?.on('disconnect', () =>
-      console.log(`socket ${socket.id} disconnecting`)
-    );
-    socket?.on('connect', () => {
-      updateSocket(socket);
-    });
-
-    return () => {
-      socket?.off(
-        'updatePlayerPoints',
-        (data: {
-          playerIndex: number;
-          newPoints: number;
-          pointType: 'vp' | 'cp';
-        }) => {
-          updatePlayerPoints(data.playerIndex, data.newPoints, data.pointType);
-        }
-      );
-      socket?.off('playerName', (playerName: string) => {
-        updatePlayerName(playerName);
-      });
-      socket?.off('turningPointUpdate', (modType: 'add' | 'subtract') => {
-        updateTurnCount(modType);
-      });
-      socket?.off('connect', () => {
-        updateSocket(socket);
-      });
-    };
   }, [socket]);
 
   function updatePlayerInMatch(state: boolean) {
