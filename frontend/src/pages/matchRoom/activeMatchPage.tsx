@@ -46,10 +46,6 @@ export default function ActiveMatchPage() {
   }, [matchData]);
 
   useEffect(() => {
-    console.log('active match page rendered');
-  }, []);
-
-  useEffect(() => {
     updateMatchData(normalizedMatchData);
   }, [normalizedMatchData]);
 
