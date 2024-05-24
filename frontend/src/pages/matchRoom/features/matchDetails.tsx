@@ -7,23 +7,27 @@ export function MatchDetails() {
   const { matchData } = useMatchContext();
   const playerNames = Object.values(matchData.players).map((player, index) => {
     if (player.name) {
-      return <li key={index}>{player.name}</li>;
+      return (
+        <li aria-label={`player${index + 1}Name`} key={index}>
+          {player.name}
+        </li>
+      );
     }
   });
 
   return (
     <MatchInfo>
       <ContentHeader>{matchData.matchName}</ContentHeader>
-      <div className="info">
-        <div className="sub-info">
+      <section className="info">
+        <section className="sub-info">
           <p>Match Id:</p>
-          <p>{matchData.matchId}</p>
-        </div>
-        <div className="sub-info">
+          <p aria-label="matchId">{matchData.matchId}</p>
+        </section>
+        <section className="sub-info">
           <p>Match Link:</p>
           <p>www.asd.com</p>
-        </div>
-      </div>
+        </section>
+      </section>
       <Players>
         <h4>PLAYERS</h4>
         <ul>{playerNames}</ul>
