@@ -1,18 +1,19 @@
 import styled from 'styled-components';
 
 interface ButtonProps {
-  type: 'submit' | 'button' | 'reset' | undefined;
-  name: string;
-  text: string;
+  children: React.ReactNode;
+  type?: 'submit' | 'button' | 'reset';
+  name?: string;
   handleClick?: () => void;
   disabled?: boolean;
   $orange?: boolean;
 }
 
 export function GenericButton({
+  children,
   type,
   name,
-  text,
+
   handleClick,
   disabled,
   $orange
@@ -25,14 +26,15 @@ export function GenericButton({
       disabled={disabled}
       $orange={$orange}
     >
-      {text}
+      {children}
     </Button>
   );
 }
 
 const Button = styled.button<{ $orange?: boolean }>`
   flex: 1;
-  font-size: 1.25rem;
+  min-width: 200px;
+  font-size: 1.1rem;
   padding: 16px;
   font-weight: 800;
   letter-spacing: 1px;
