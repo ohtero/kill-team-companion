@@ -5,12 +5,17 @@ import { Form } from '../../components/UI/form';
 import { ErrorMsg } from '../../components/UI/errorMsg';
 import { FormSection } from '../../components/UI/formSection';
 import { GenericButton } from '../../components/UI/genericButton';
-import { FormInputs, MissionTypes } from './types';
+import { CreateMatchFormInputs } from './types';
+
+/**
+ * TODO: Create proper functionality for mission selection. Placeholder is currently left in since the placing applies
+ * ? See if submitHandler should be extracted to Utils
+ */
 
 export function CreateMatchForm() {
-  const [selectedMission, setSelectedMission] = useState<MissionTypes | null>(
-    null
-  );
+  // const [selectedMission, setSelectedMission] = useState<MissionTypes | null>(
+  //   null
+  // );
   const [creationIsPending, setCreationIsPending] = useState(false);
   const navigate = useNavigate();
   const {
@@ -18,18 +23,24 @@ export function CreateMatchForm() {
     handleSubmit,
     setError,
     formState: { errors }
-  } = useForm<FormInputs>({
+  } = useForm<CreateMatchFormInputs>({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     delayError: 500
   });
 
-  const createMatch: SubmitHandler<FormInputs> = async () => {
+  const createMatch: SubmitHandler<CreateMatchFormInputs> = async (
+    formData
+  ) => {
     try {
       setCreationIsPending(true);
       const res = await fetch('http://localhost:3000/match/new-match', {
         method: 'POST',
-        mode: 'cors'
+        mode: 'cors',
+        body: JSON.stringify({ matchName: formData.matchName }),
+        headers: {
+          'content-type': 'application/json'
+        }
       });
 
       if (res.status === 200) {
@@ -57,9 +68,11 @@ export function CreateMatchForm() {
     });
   }
 
-  function setMissionText(name: string, rules: string, actions: string) {
-    setSelectedMission({ name: name, rules: rules, actions: actions });
-  }
+  // * Mission setting functionality to be used later
+  // function setMissionText(name: string, rules: string, actions: string) {
+  //   setSelectedMission({ name: name, rules: rules, actions: actions });
+  // }
+
   return (
     <Form onSubmit={handleSubmit(createMatch)}>
       <FormSection>
@@ -71,7 +84,7 @@ export function CreateMatchForm() {
           type="text"
           {...register('matchName', {
             required: { value: true, message: 'Match name is required.' },
-            maxLength: { value: 50, message: 'Mach name is to long.' },
+            maxLength: { value: 50, message: 'Match name is to long.' },
             validate: (value) =>
               value.trim().length > 0 ||
               "Match name can't be only empty spaces."
@@ -81,7 +94,7 @@ export function CreateMatchForm() {
           placeholder="My match"
         />
       </FormSection>
-      <FormSection>
+      {/* <FormSection>
         <div className="label-and-error">
           <label htmlFor="mission">Mission</label>
         </div>
@@ -128,15 +141,16 @@ export function CreateMatchForm() {
             <p>{selectedMission.actions}</p>
           </section>
         )}
-      </FormSection>
+      </FormSection> */}
       <FormSection>
         <GenericButton
           type="submit"
           name="createMatch"
-          text={creationIsPending ? 'CREATING...' : ' CREATE'}
           disabled={creationIsPending}
           $orange
-        />
+        >
+          {creationIsPending ? 'CREATING...' : ' CREATE'}
+        </GenericButton>
         <ErrorMsg>
           {errors.root?.serverError && errors.root.serverError.message}
         </ErrorMsg>
