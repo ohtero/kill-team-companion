@@ -4,6 +4,8 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { ErrorMsg } from '../../../components/UI/errorMsg';
 import { FormSection } from '../../../components/UI/formSection';
 
+// ? See if the submitHandler should be extracted to Utils.
+
 export function NameInputForm({
   socket,
   matchId,
