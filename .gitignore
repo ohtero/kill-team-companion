@@ -26,3 +26,5 @@ DISABLEDdocker-compose.debug.yml
 *.njsproj
 *.sln
 *.sw?
+
+frontend/src/tests/redundancies
