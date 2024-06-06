@@ -4,7 +4,7 @@ export enum Missions {
   mission2 = 'Mission 2'
 }
 
-interface FormInputs {
+interface CreateMatchFormInputs {
   matchName: string;
   mission: Missions;
 }
