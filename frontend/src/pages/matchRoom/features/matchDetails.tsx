@@ -2,9 +2,11 @@ import styled from 'styled-components';
 import { ContentSection } from '../../../components/UI/contentSection';
 import { ContentHeader } from '../../../components/UI/contentHeader';
 import { useMatchContext } from '../context/matchContext';
+import { GenericButton } from '../../../components/UI/genericButton';
 
 export function MatchDetails() {
   const { matchData } = useMatchContext();
+  const url = window.location.toString();
   const playerNames = Object.values(matchData.players).map((player, index) => {
     if (player.name) {
       return (
@@ -20,12 +22,21 @@ export function MatchDetails() {
       <ContentHeader>{matchData.matchName}</ContentHeader>
       <section className="info">
         <section className="sub-info">
-          <p>Match Id:</p>
-          <p aria-label="matchId">{matchData.matchId}</p>
+          <p aria-label="matchId">Match Id: {matchData.matchId}</p>
         </section>
         <section className="sub-info">
-          <p>Match Link:</p>
-          <p>www.asd.com</p>
+          <GenericButton
+            aria-label="copyMatchId"
+            handleClick={() => navigator.clipboard.writeText(matchData.matchId)}
+          >
+            Copy Id
+          </GenericButton>
+          <GenericButton
+            aria-label="copyLink"
+            handleClick={() => navigator.clipboard.writeText(url)}
+          >
+            Copy Link
+          </GenericButton>
         </section>
       </section>
       <Players>
@@ -58,6 +69,8 @@ const MatchInfo = styled(ContentSection)`
     padding: 12px;
     gap: 16px;
     justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
   }
 `;
 
