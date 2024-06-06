@@ -7,6 +7,8 @@ import { MatchFeaturesView } from './components/matchFeaturesView';
 import { useMatchContext } from './context/matchContext';
 import { useMatchWebSocket } from './hooks/useMatchWebSocket';
 
+// TODO: Look into reducing useEffects if possible.
+
 export default function ActiveMatchPage() {
   const socket = useMatchWebSocket('http://localhost:3000');
   const location = useLocation();
