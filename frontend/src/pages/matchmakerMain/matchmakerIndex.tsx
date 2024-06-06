@@ -7,7 +7,7 @@ import { FormSection } from '../../components/UI/formSection';
 import { CreateMatchForm } from './createMatchForm';
 
 /**
- * TODO: create functionality to find match form and extract to its own component
+ * TODO: create functionality to find match form and extract to its own component.K
  */
 
 export default function MatchMainPage() {
@@ -28,12 +28,9 @@ export default function MatchMainPage() {
             />
           </FormSection>
           <FormSection>
-            <GenericButton
-              type="submit"
-              name="initiateSearch"
-              text="SEARCH"
-              $orange
-            />
+            <GenericButton type="submit" name="initiateSearch" $orange>
+              SEARCH
+            </GenericButton>
           </FormSection>
         </Form>
       </ContentSection>
