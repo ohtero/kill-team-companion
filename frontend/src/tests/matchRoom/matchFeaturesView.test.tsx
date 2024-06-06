@@ -26,8 +26,14 @@ describe('Match feature view', () => {
   });
   it('should render mission details when `Mission` tab is clicked', () => {
     render(<MatchFeaturesView />);
-    const button = screen.getByText(/mission/i);
-    fireEvent.click(button);
+    const countersButton = screen.getByText(/counters/i);
+    const missionButton = screen.getByText(/mission/i);
+
+    fireEvent.click(countersButton);
+    const turnCounter = screen.getByText(/turning point/i);
+    expect(turnCounter).toBeInTheDocument();
+
+    fireEvent.click(missionButton);
     const missionText = screen.getByText(/nothing here yet/i);
     expect(missionText).toBeInTheDocument();
   });
