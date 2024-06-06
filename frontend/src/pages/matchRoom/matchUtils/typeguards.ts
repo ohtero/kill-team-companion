@@ -1,5 +1,7 @@
 import { NormalizedMatchData } from '../../../types/databaseTypes';
 
+// * Current version does not utilize this type guard. Kept intact if it is needed in future. Remove if no use arises.
+
 export function isMatchData(
   data: NormalizedMatchData | {}
 ): data is NormalizedMatchData {

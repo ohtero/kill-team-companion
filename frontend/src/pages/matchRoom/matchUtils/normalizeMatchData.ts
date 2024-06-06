@@ -34,6 +34,10 @@ export function normalizeMatchData(
     player4_vp
   } = matchData;
 
+  /**
+   * * "Normalized" match data object left nested for now, since it fits the use case and the structure is not predicted to change. Keep an eye out if it needs to be actually normalized in the future.
+   */
+
   const normalizedMatchData = {
     matchId: match_id,
     matchName: match_name,
