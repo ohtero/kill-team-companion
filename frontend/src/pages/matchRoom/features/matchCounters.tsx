@@ -15,6 +15,7 @@ export function MatchCounters() {
 
 const CountersContainer = styled(ContentSection)`
   border: none;
+  background: none;
   @media (max-width: ${Device.smMax}) {
     padding: 8px;
   }

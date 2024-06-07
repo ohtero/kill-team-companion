@@ -25,5 +25,5 @@ const Indicator = styled.li<{ $ownTurn: number; $currentTurn: number }>`
   border: ${(props) =>
     props.$ownTurn === props.$currentTurn
       ? `4px solid HSLA(${props.theme.colors.tertiary})`
-      : 'none'};
+      : '4px solid transparent'};
 `;

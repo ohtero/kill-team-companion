@@ -6,10 +6,9 @@ export function ContentHeader({ children }: GenericProps) {
 
 const Header = styled.h2`
   width: 100%;
-  padding: 16px 0px;
+  padding-bottom: 16px;
   text-align: center;
-  background: HSLA(${(props) => props.theme.colors.secondary}, 1);
   color: HSLA(${(props) => props.theme.colors.tertiary}, 1);
-  border: solid 4px HSLA(${(props) => props.theme.colors.tertiary}, 1);
+  props.theme.colors.tertiary}, 1);
   text-shadow: ${(props) => props.theme.shadow.dark};
 `;

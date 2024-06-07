@@ -57,8 +57,12 @@ const HomeContentContainer = styled.div`
     align-items: center;
     padding: 3rem 1rem;
     gap: 1rem;
-    background: HSLA(${(props) => props.theme.colors.secondary}, 1);
-    border-bottom: solid 4px HSLA(${(props) => props.theme.colors.tertiary}, 1);
+    background: linear-gradient(
+      HSLA(${(props) => props.theme.colors.secondary}, 1),
+      HSLA(${(props) => props.theme.colors.secondaryLight}, 0.7) 30% 70%,
+      HSLA(${(props) => props.theme.colors.secondary}, 1)
+    );
+    border-bottom: solid 2px HSLA(${(props) => props.theme.colors.tertiary}, 1);
     text-wrap: balance;
   }
 

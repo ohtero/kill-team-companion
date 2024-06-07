@@ -35,8 +35,9 @@ const FeatureTabs = styled.nav`
   display: flex;
   width: 100%;
   height: fit-content;
+  position: sticky;
+  bottom: 0px;
 
-  // flex-wrap: wrap;
   & button:first-child {
     border-left: none;
   }

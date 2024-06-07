@@ -64,7 +64,6 @@ const PlayerCountersContainer = styled.section`
   flex-direction: column;
   width: 100%;
   padding: 0;
-  // gap: 16px;
 
   .player-names {
     display: flex;
@@ -98,7 +97,6 @@ const PlayerCountersContainer = styled.section`
 
   h5 {
     padding: 6px;
-    // background: HSLA(${(props) => props.theme.colors.primary});
     border-bottom: 2px solid HSLA(${(props) => props.theme.colors.tertiary});
     border-top: 2px solid HSLA(${(props) => props.theme.colors.tertiary});
     color: white;
@@ -113,6 +111,5 @@ const CounterSection = styled.section`
     display: flex;
     width: 100%;
     gap: 8px;
-    // background: HSLA(${(props) => props.theme.colors.primary});
   }
 `;

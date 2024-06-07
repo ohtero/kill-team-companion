@@ -35,7 +35,7 @@ export const FeatureViewWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  border: solid 4px HSLA(${(props) => props.theme.colors.tertiary}, 1);
+  overflow-y: auto;
 `;
 
 export const ExtendedContentSection = styled(ContentSection)`
@@ -43,4 +43,5 @@ export const ExtendedContentSection = styled(ContentSection)`
   border-top: none;
   padding: 0px;
   border: none;
+  overflow-y: auto;
 `;

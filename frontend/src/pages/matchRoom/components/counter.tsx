@@ -40,7 +40,6 @@ const CounterContainer = styled.div`
   align-items: center;
 
   button {
-    // border: 4px solid #eee;
     border: 4px solid HSL(200, 10%, 70%);
   }
 
@@ -53,28 +52,29 @@ const CounterContainer = styled.div`
   }
 
   .wrapper > * {
-    height: 75px;
+    // height: 50px;
   }
 
   .point-display {
+    height: 75px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: #fff;
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 700;
-    border: 4px solid #eee;
+    border-left: 4px solid HSL(200, 10%, 70%);
+    border-right: 4px solid HSL(200, 10%, 70%);
   }
 
   .add-point {
     border-radius: 10px 10px 0 0;
-    font-size: 2.5rem;
+    font-size: 2rem;
     background: linear-gradient(to top, HSL(200, 10%, 80%) 0%, #fff 50%);
   }
   .sub-point {
     border-radius: 0 0 10px 10px;
-    font-size: 2.5rem;
-    background: linear-gradient(to bottom, HSL(200, 10%, 80%) 0%, #fff 50%);
-    // border: 4px solid HSL(200, 10%, 80%);
+    font-size: 2rem;
+    background: linear-gradient(to top, HSL(200, 10%, 80%) 0%, #fff 50%);
   }
 `;

@@ -49,6 +49,7 @@ export function MatchDetails() {
 
 const MatchInfo = styled(ContentSection)`
   border: none;
+  background: none;
 
   .info {
     display: flex;
@@ -56,7 +57,6 @@ const MatchInfo = styled(ContentSection)`
     width: 100%;
     align-items: center;
     border: solid 2px HSLA(${(props) => props.theme.colors.primary});
-    background: HSLA(${(props) => props.theme.colors.secondaryLight}, 1);
 
     & .sub-info:first-child {
       border-bottom: 2px solid HSLA(${(props) => props.theme.colors.primary});
@@ -91,7 +91,7 @@ const Players = styled.div`
     flex-wrap: wrap;
     justify-content: center;
     border: solid 2px HSLA(${(props) => props.theme.colors.primary});
-    // background: HSLA(${(props) => props.theme.colors.secondaryLight}, 1);
+    background: HSLA(${(props) => props.theme.colors.secondaryLight}, 1);
   }
 
   li {

@@ -46,6 +46,7 @@ export default function MatchMainPage() {
 
 const ComponentWrapper = styled.div`
   display: flex;
+  justify-content: space-between;
   flex-direction: column;
   width: 100%;
   gap: 64px;
@@ -54,7 +55,6 @@ const ComponentWrapper = styled.div`
 const MatchCreate = styled.section`
   display: flex;
   flex-direction: column;
-  // background: HSLA(${(props) => props.theme.colors.secondaryLight}, 1);
 
   .mission-selection {
     display: flex;
@@ -70,7 +70,6 @@ const MatchCreate = styled.section`
 
   .mission-selection-inputs > * {
     flex: 1;
-    // padding: 10px;
   }
 
   .selected-mission-display {
