@@ -44,7 +44,7 @@ export function CreateMatchForm() {
       });
 
       if (res.status === 200) {
-        const data = await res.json();
+        const data = (await res.json()) as string;
         navigateToMatchEntry(data);
       } else {
         throw new Error(`Could not create match! Status: ${res.status}`);
@@ -62,9 +62,10 @@ export function CreateMatchForm() {
   };
 
   function navigateToMatchEntry(matchId: string) {
+    const searchParams = createSearchParams([['id', matchId]]).toString();
     navigate({
       pathname: '/match',
-      search: `?${createSearchParams([['id', matchId]])}`
+      search: `${searchParams}`
     });
   }
 
@@ -78,7 +79,7 @@ export function CreateMatchForm() {
       <FormSection>
         <div className="label-and-error">
           <label htmlFor="matchName">Match Name (Max 50 characters)</label>
-          <ErrorMsg>{errors.matchName && errors.matchName.message}</ErrorMsg>
+          <ErrorMsg>{errors?.matchName?.message}</ErrorMsg>
         </div>
         <input
           type="text"
@@ -151,9 +152,7 @@ export function CreateMatchForm() {
         >
           {creationIsPending ? 'CREATING...' : ' CREATE'}
         </GenericButton>
-        <ErrorMsg>
-          {errors.root?.serverError && errors.root.serverError.message}
-        </ErrorMsg>
+        <ErrorMsg>{errors?.root?.serverError.message}</ErrorMsg>
       </FormSection>
     </Form>
   );

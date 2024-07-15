@@ -11,7 +11,9 @@ import { CreateMatchForm } from './createMatchForm';
  */
 
 export default function MatchMainPage() {
-  function placeholderFunction() {}
+  function placeholderFunction() {
+    return;
+  }
 
   return (
     <ComponentWrapper>

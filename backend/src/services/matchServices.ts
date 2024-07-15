@@ -2,6 +2,7 @@ import { Request } from 'express';
 import { nanoid } from 'nanoid';
 import { MatchData } from '../types/databaseTypes';
 import { connectToPool } from '../API/middleware/connectToDb';
+import { CustomRequest } from '../types/express/extensions';
 
 export async function getMatchDataFromDb(
   req: Request
@@ -23,7 +24,9 @@ export async function getMatchDataFromDb(
   }
 }
 
-export async function insertNewMatchData(req: Request): Promise<string | null> {
+export async function insertNewMatchData(
+  req: CustomRequest<{ matchName: string }>
+): Promise<string | null> {
   const client = req.dbClient;
   const matchName: string = req.body.matchName;
   const matchId: string = nanoid(10);
@@ -43,7 +46,7 @@ export async function insertNewMatchData(req: Request): Promise<string | null> {
 }
 
 export async function addPlayerToMatch(
-  req: Request
+  req: CustomRequest<{ playerName: string }>
 ): Promise<{ playerName: string; matchId: string } | null> {
   const client = req.dbClient;
   const { matchId } = req.params;
@@ -114,7 +117,7 @@ export async function modifyPointsInDb(
   playerIndex: number,
   point: string,
   type: string
-): Promise<{} | null> {
+): Promise<object | null> {
   const client = await connectToPool();
   const playerPointCol = `player${playerIndex + 1}_${point}`;
   const text =
@@ -126,11 +129,13 @@ export async function modifyPointsInDb(
     values: [matchId]
   };
   try {
-    const data = await client?.query(query);
-    const pointData = Object.values(data?.rows[0])[0] as number;
+    const data = await client?.query<Record<string, number>>(query);
+    if (!data) {
+      throw new Error();
+    }
     const playerPointData = {
       playerIndex: playerIndex,
-      newPoints: pointData,
+      newPoints: Object.values(data.rows[0])[0],
       pointType: point
     };
     return playerPointData;

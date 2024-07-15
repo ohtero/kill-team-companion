@@ -47,13 +47,13 @@ const defaultMatchData: NormalizedMatchData = {
 
 export const defaultContext = {
   matchData: defaultMatchData,
-  updateMatchData: () => {},
-  updateSocket: () => {},
-  modifyTurnCount: () => {},
-  modifyPlayerPoints: () => {},
-  updatePlayerPoints: () => {},
-  updateTurnCount: () => {},
-  updatePlayerName: () => {}
+  updateMatchData: () => null,
+  updateSocket: () => null,
+  modifyTurnCount: () => null,
+  modifyPlayerPoints: () => null,
+  updatePlayerPoints: () => null,
+  updateTurnCount: () => null,
+  updatePlayerName: () => null
 };
 
 export const MatchDataContext = createContext<MatchContext>(defaultContext);
@@ -129,7 +129,7 @@ export function MatchDataProvider({ children }: GenericProps) {
 
   function updatePlayerName(playerName: string) {
     setMatchData((draft) => {
-      for (let playerKey in draft.players) {
+      for (const playerKey in draft.players) {
         const player = playerKey as keyof NormalizedMatchData['players'];
         if (!draft.players[player].name) {
           draft.players[player].name = playerName;

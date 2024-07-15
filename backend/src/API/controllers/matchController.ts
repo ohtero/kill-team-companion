@@ -24,7 +24,7 @@ async function createMatch(req: Request, res: Response): Promise<void> {
         ? error.message
         : 'Server error! Match could not be created..';
     res.status(500).json(message);
-    console.log('MATCH CREATION ERROR: ' + err);
+    console.log('MATCH CREATION ERROR: ' + error.stack);
   }
 }
 
@@ -46,7 +46,7 @@ async function getMatchData(req: Request, res: Response): Promise<void> {
         ? error.message
         : 'Server error! Player could not be added.';
     res.status(500).json(message);
-    console.log('MATCH DATA FETCHING ERROR: ' + err);
+    console.log('MATCH DATA FETCHING ERROR: ' + error.stack);
   }
 }
 
