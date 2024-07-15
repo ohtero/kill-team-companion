@@ -1,27 +1,22 @@
 import styled from 'styled-components';
 import { TopNavLink } from './styling/top-nav-link';
 
-type MenuProps = {
-  isVisible: boolean;
-  hideMenu: () => void;
-};
-
 export function MobileMenu({ isVisible, hideMenu }: MenuProps) {
   return (
     <Menu $isVisible={isVisible}>
       <ul>
         <li>
-          <TopNavLink color="black" to={'/matchmaker'} handleClick={hideMenu}>
+          <TopNavLink color="dark" to={'/matchmaker'} handleClick={hideMenu}>
             Matchmaker
           </TopNavLink>
         </li>
         <li>
-          <TopNavLink color="black" to={''} handleClick={hideMenu}>
+          <TopNavLink color="dark" to={''} handleClick={hideMenu}>
             Teams
           </TopNavLink>
         </li>
         <li>
-          <TopNavLink color="black" to={''} handleClick={hideMenu}>
+          <TopNavLink color="dark" to={''} handleClick={hideMenu}>
             Sign In
           </TopNavLink>
         </li>

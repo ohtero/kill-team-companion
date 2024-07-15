@@ -1,30 +1,21 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { LinkProps } from '../styling/types';
 
-type LinkProps = {
-  to: string;
-  children: string;
-  textColor: 'light' | 'dark';
-};
-
-export default function ButtonStyledLink({
-  to,
-  children,
-  textColor
-}: LinkProps) {
+export default function ButtonStyledLink({ to, children, color }: LinkProps) {
   return (
-    <StyledLink to={to} $textColor={textColor}>
+    <StyledLink to={to} $color={color}>
       {children}
     </StyledLink>
   );
 }
 
-export const StyledLink = styled(Link)<{ $textColor: 'light' | 'dark' }>`
+export const StyledLink = styled(Link)<{ $color?: 'light' | 'dark' }>`
   display: inline-flex;
   padding: 1rem;
   border-radius: 0 0 3px 3px;
   background: HSLA(${(props) => props.theme.colors.tertiary}, 1);
-  color: ${(props) => (props.$textColor === 'light' ? '#fff' : '#111')};
+  color: ${(props) => (props.$color === 'light' ? '#fff' : '#111')};
   text-decoration: none;
   justify-content: center;
   width: 100%;

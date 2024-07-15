@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 
-type IconProps = {
-  isActive: boolean;
-};
-
-export function HamburgerMenu({ isActive }: IconProps) {
+export function HamburgerMenu({ isActive }: { isActive: boolean }) {
   return (
     <Icon
       $isActive={isActive}

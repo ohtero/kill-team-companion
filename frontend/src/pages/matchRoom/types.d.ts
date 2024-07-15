@@ -22,7 +22,7 @@ interface NameInputFormTypes {
   matchId: string | null;
   matchIsFull: boolean;
   updatePlayerInMatch?: (arg: boolean) => void;
-  onTestSubmit?: SubmitHandler;
+  onTestSubmit?: SubmitHandler<MatchEntryFormInput>;
 }
 
 interface MatchFeatureProps {
@@ -41,11 +41,11 @@ interface TabNavProps {
   updateActiveTab: (tabName: TabName) => void;
 }
 
-export type PlayerPoint = {
+interface PlayerPoint {
   points: number;
   playerIndex: number;
   pointType: 'cp' | 'vp';
-};
+}
 
 interface TurnPlayerPoint extends MatchFeatureProps {
   increaseTurnCount?: () => void;
@@ -58,7 +58,7 @@ interface TurnIndicatorProps {
 
 export type TabName = 'details' | 'counters' | 'mission';
 
-type MatchContext = {
+interface MatchContext {
   matchData: NormalizedMatchData;
   updateMatchData: (matchData: NormalizedMatchData) => void;
   updateSocket: (socket: Socket) => void;
@@ -75,4 +75,4 @@ type MatchContext = {
   ) => void;
   updateTurnCount: (modType: 'add' | 'subtract') => void;
   updatePlayerName: (name: string) => void;
-};
+}

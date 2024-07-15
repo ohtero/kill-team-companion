@@ -1,12 +1,6 @@
 import styled from 'styled-components';
 import ButtonStyledLink from '../components/UI/button-styled-link';
 
-type CardProps = {
-  heading: string;
-  linkPath: string;
-  children: string | React.ReactNode;
-};
-
 export function ToolCard({ heading, linkPath }: CardProps) {
   return (
     <Card>
@@ -18,7 +12,7 @@ export function ToolCard({ heading, linkPath }: CardProps) {
         Victory Points.
       </p>
       <div className="card-link">
-        <ButtonStyledLink to={linkPath} textColor="dark">
+        <ButtonStyledLink to={linkPath} color="dark">
           Go To Matchmaker
         </ButtonStyledLink>
       </div>

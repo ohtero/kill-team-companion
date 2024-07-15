@@ -3,7 +3,7 @@ interface GenericProps {
 }
 
 interface FormProps extends GenericProps {
-  onSubmit: () => void;
+  onSubmit: () => void | Promise<void>;
 }
 
 interface ErrorProps extends GenericProps {
@@ -12,4 +12,13 @@ interface ErrorProps extends GenericProps {
 
 interface ContentSectionProps extends GenericProps {
   className?: string;
+}
+
+interface ButtonProps {
+  children: React.ReactNode;
+  type?: 'submit' | 'button' | 'reset';
+  name?: string;
+  handleClick?: () => void | Promise<void>;
+  disabled?: boolean;
+  $orange?: boolean;
 }

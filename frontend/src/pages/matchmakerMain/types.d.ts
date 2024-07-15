@@ -9,8 +9,8 @@ interface CreateMatchFormInputs {
   mission: Missions;
 }
 
-export type MissionTypes = {
+interface MissionTypes {
   name: string;
   rules: string;
   actions: string;
-};
+}
