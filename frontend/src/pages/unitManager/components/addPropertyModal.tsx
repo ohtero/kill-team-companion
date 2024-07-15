@@ -1,5 +1,5 @@
 import { forwardRef, useState } from 'react';
-import { AddPropertyModalTypes } from '../types';
+// import { AddPropertyModalTypes } from '../types';
 import styled from 'styled-components';
 import { AddWeaponView } from './addWeaponView';
 import { CreatePropertyView } from './createPropertyView';

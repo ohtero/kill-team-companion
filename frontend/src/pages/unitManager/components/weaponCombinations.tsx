@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { WeaponSet } from './weaponSet';
-import { GeneralWeaponTypes } from '../types';
 import { useState } from 'react';
 import { FormSectionHeader } from '../../../components/UI/formSectionHeader';
 

@@ -1,4 +1,3 @@
-import { PropertyTypes } from '../types';
 import { NewWeaponForm } from './newWeaponForm';
 
 export function CreatePropertyView({ propertyName }: PropertyTypes) {

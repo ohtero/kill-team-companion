@@ -1,5 +1,3 @@
-import { PropertyTypes } from '../types';
-
 export function AddWeaponView({ propertyName }: PropertyTypes) {
   return (
     <>
