@@ -68,7 +68,7 @@ export function NameInputForm({
   };
 
   return (
-    <Form onSubmit={() => handleSubmit(onTestSubmit ?? addPlayerDisplayName)}>
+    <Form onSubmit={handleSubmit(onTestSubmit ?? addPlayerDisplayName)}>
       <FormSection>
         <label htmlFor="displayName">Name</label>
         <input
@@ -86,8 +86,8 @@ export function NameInputForm({
         />
       </FormSection>
       <ErrorMsg $centered>
-        {errors.root?.serverError.message}
-        {errors?.displayName?.message}
+        {errors.root?.serverError && errors.root?.serverError.message}
+        {errors.displayName && errors.displayName.message}
       </ErrorMsg>
       <FormSection>
         <button type="submit" name="confirmDisplayName" disabled={matchIsFull}>
