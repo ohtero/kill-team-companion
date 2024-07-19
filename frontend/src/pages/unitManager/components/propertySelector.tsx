@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { UnitPropertyTypes } from '../types';
 import { PropertyItem } from './propertyItem';
 import { useRef } from 'react';
 import { AddPropertyModal } from './addPropertyModal';

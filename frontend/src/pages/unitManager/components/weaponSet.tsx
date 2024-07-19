@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { Device } from '../../../globalStyling/breakpoints';
 import { useState } from 'react';
 import { WeaponRow } from './weaponRow';
-import { WeaponSetTypes } from '../types';
 
 export function WeaponSet({
   weapons,

@@ -1,12 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-
-type LinkProps = {
-  to: string;
-  children: string;
-  handleClick?: () => void;
-  color?: 'black';
-};
+import { LinkProps } from './types';
 
 export function TopNavLink({ to, handleClick, color, children }: LinkProps) {
   return (
@@ -16,9 +10,9 @@ export function TopNavLink({ to, handleClick, color, children }: LinkProps) {
   );
 }
 
-export const Link = styled(NavLink)<{ $color?: 'black' }>`
+export const Link = styled(NavLink)<{ $color?: 'light' | 'dark' }>`
   text-decoration: none;
-  color: ${(props) => (props.$color === 'black' ? 'black' : 'white')};
+  color: ${(props) => (props.$color === 'dark' ? 'black' : 'white')};
   font-weight: 500;
   &:focus {
     color: HSLA(${(props) => props.theme.colors.tertiary}, 1);

@@ -1,14 +1,5 @@
 import styled from 'styled-components';
 
-interface ButtonProps {
-  children: React.ReactNode;
-  type?: 'submit' | 'button' | 'reset';
-  name?: string;
-  handleClick?: () => void;
-  disabled?: boolean;
-  $orange?: boolean;
-}
-
 export function GenericButton({
   children,
   type,

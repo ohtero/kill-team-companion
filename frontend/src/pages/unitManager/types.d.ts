@@ -1,4 +1,4 @@
-export interface StatInputTypes {
+interface StatInputTypes {
   statName: string;
   rangeStart: number;
   rangeEnd: number;
@@ -6,11 +6,11 @@ export interface StatInputTypes {
   step?: number;
 }
 
-export interface UnitPropertyTypes {
+interface UnitPropertyTypes {
   title: string;
 }
 
-export interface WeaponRowTypes {
+interface WeaponRowTypes {
   weapon: number;
   selectionName: string;
   weapons: string[];
@@ -18,20 +18,20 @@ export interface WeaponRowTypes {
   handleClick: (index: number, side: string) => void;
 }
 
-export interface GeneralWeaponTypes {
+interface GeneralWeaponTypes {
   weapons: string[];
 }
 
-export interface WeaponSetTypes extends GeneralWeaponTypes {
+interface WeaponSetTypes extends GeneralWeaponTypes {
   setIndex: number;
   set: number;
   handleClick: (set: number) => void;
 }
 
-export interface AddPropertyModalTypes extends PropertyTypes {
+interface AddPropertyModalTypes extends PropertyTypes {
   cancelAdd: () => void;
 }
 
-export interface PropertyTypes {
+interface PropertyTypes {
   propertyName: 'weapon' | 'ability' | 'action' | 'not found';
 }

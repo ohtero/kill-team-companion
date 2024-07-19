@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { WeaponRowTypes } from '../types';
 
 export function WeaponRow({
   weapon,

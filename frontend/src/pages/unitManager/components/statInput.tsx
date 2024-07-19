@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Device } from '../../../globalStyling/breakpoints';
-import { StatInputTypes } from '../types';
 
 export function StatInput({
   statName,

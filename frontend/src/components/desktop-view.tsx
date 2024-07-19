@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 import { Device } from '../globalStyling/breakpoints';
 
-type Props = {
-  children: React.ReactNode;
-};
-
-export function DesktopView({ children }: Props) {
+export function DesktopView({ children }: { children: React.ReactNode }) {
   return <Wrapper>{children}</Wrapper>;
 }
 
