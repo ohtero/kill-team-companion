@@ -72,10 +72,6 @@ services:
       ktc_net:
         ipv4_address: 192.168.200.3
 
-volumes:
-  postgres_data:
-  pgadmin_data:
-
 networks:
   ktc_net:
     ipam:
