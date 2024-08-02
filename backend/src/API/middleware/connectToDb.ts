@@ -6,7 +6,7 @@ export default async function connectToDb(
   req: Request,
   res: Response,
   next: NextFunction
-) {
+): Promise<void> {
   try {
     const client = await pool.connect();
     req.dbClient = client;
@@ -14,7 +14,6 @@ export default async function connectToDb(
   } catch (err) {
     res.status(500);
     console.error('Failed db connection:', err);
-    return;
   }
 }
 export async function connectToPool(): Promise<PoolClient | null> {
