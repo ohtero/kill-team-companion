@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { RequestHandler, Router } from 'express';
 import {
   createMatch,
   getMatchData,
@@ -9,9 +9,9 @@ import {
 
 const matchRouter = Router();
 
-matchRouter.post('/new-match', () => createMatch);
-matchRouter.get('/match-data/:matchId', () => getMatchData);
-matchRouter.post('/new-player/:matchId', () => addNewPlayer);
+matchRouter.post('/new-match', createMatch as RequestHandler);
+matchRouter.get('/match-data/:matchId', getMatchData as RequestHandler);
+matchRouter.post('/new-player/:matchId', addNewPlayer as RequestHandler);
 // matchRouter.post('/:matchId/:playerIndex/:point/:type', modifyPlayerPoints);
 // matchRouter.post('/turn/:matchId/:type', modifyTurnCount);
 

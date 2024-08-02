@@ -1,19 +1,15 @@
 import { Server } from 'socket.io';
 import { updatePlayerPoints, updateTurningPoint } from './listenerFunctions';
 
-/* 
-TODO: Define leaving of a room, add error handling to 'join room' 
-  **/
-
 export const socketListeners = (io: Server) => {
   io.on('connection', (socket) => {
     console.log(`${socket.id} connected`);
     socket.on('disconnect', () => {
       console.log(`${socket.id} disconnected`);
-      // socket.leave();
+      socket.leave;
     });
     socket.on('joinRoom', async (matchId: string) => {
-      await socket.join(matchId);
+      socket.join(matchId);
     });
     socket.on('newPlayer', (data: { playerName: string; matchId: string }) => {
       io.to(data.matchId).emit('playerName', data.playerName);
@@ -26,11 +22,11 @@ export const socketListeners = (io: Server) => {
         modType: string;
         matchId: string;
       }) => {
-        void updatePlayerPoints(io, socket, data);
+        updatePlayerPoints(io, socket, data);
       }
     );
     socket.on('turningPoint', (data: { matchId: string; modType: string }) => {
-      void updateTurningPoint(io, socket, data);
+      updateTurningPoint(io, socket, data);
     });
   });
 };

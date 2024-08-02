@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { RequestHandler } from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import pg from 'pg';
@@ -50,7 +50,7 @@ socketListeners(io);
 // };
 
 app.use(cors());
-app.use('/match', connectToDb, matchRouter);
+app.use('/match', connectToDb as RequestHandler, matchRouter);
 
 server.listen(port, () => console.log(`Listening on port ${port}`));
 
