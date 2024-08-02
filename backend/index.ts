@@ -1,12 +1,12 @@
-import express from 'express';
+import express, { RequestHandler } from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import pg from 'pg';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { matchRouter } from './src/API/routers/matchRouter.ts';
+import { matchRouter } from './src/API/routers/matchRouter';
 import connectToDb from './src/API/middleware/connectToDb';
-import { socketListeners } from './src/webSockets/matchListeners.ts';
+import { socketListeners } from './src/webSockets/matchListeners';
 
 const app = express();
 const server = createServer(app);
@@ -18,7 +18,7 @@ export const io = new Server(server, {
 app.use(express.json());
 dotenv.config();
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT ?? 3000;
 // const connectionString = process.env.PGHOST;
 const { Pool } = pg;
 
@@ -39,7 +39,7 @@ pool.on('error', (err) => {
 });
 
 io.engine.on('connection_error', (err) => {
-  console.log(err.req);
+  console.log(err);
 });
 
 socketListeners(io);
@@ -50,7 +50,7 @@ socketListeners(io);
 // };
 
 app.use(cors());
-app.use('/match', connectToDb, matchRouter);
+app.use('/match', connectToDb as RequestHandler, matchRouter);
 
 server.listen(port, () => console.log(`Listening on port ${port}`));
 
