@@ -1,15 +1,22 @@
-FROM node:20.10 AS dev
-WORKDIR /app
+FROM node:lts-alpine AS base
+WORKDIR /app/client
 COPY package.json package-lock.json ./
-RUN npm install --silent && mv node_modules ../
-COPY . /app
+RUN npm install --silent
+
+FROM base AS dev
+COPY . .
 EXPOSE 5173
 CMD  ["npm", "run", "dev"]
 
-FROM node:20.10 AS prod
-WORKDIR /app
-COPY package.json package-lock.json
-RUN npm install --production --silent && mv node_modules ../
-COPY --from=dev /app/build /app/build
+FROM base AS build
+COPY . .
+RUN npm run type-check
+RUN npm run build
+
+FROM node:lts-alpine AS prod
+WORKDIR /app/client 
+COPY --from=build /app/client/dist ./dist
+COPY package.json package-lock.json ./
+RUN npm install --production --silent
 EXPOSE 8000
-CMD ["npm", "tsc && vite build"]
+CMD []

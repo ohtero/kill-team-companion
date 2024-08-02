@@ -1,41 +1,19 @@
-version: '3.8'
-
 services:
   frontend:
     image: frontend
     container_name: frontend
-    build:
-      context: ./frontend
-      dockerfile: ./Dockerfile
-      target: dev
+    build: ./frontend
     ports:
       - '5173:5173'
-    develop:
-      watch:
-        - path: ./frontend
-          target: /app
-          action: sync
-          ignore:
-            - node_modules/
     networks:
       ktc_net:
         ipv4_address: 192.168.200.5
   backend:
     image: backend
     container_name: backend
-    build:
-      context: ./backend
-      dockerfile: ./Dockerfile
-      target: dev
+    build: ./backend
     ports:
       - '3000:3000'
-    develop:
-      watch:
-        - path: ./backend
-          target: /app/backend
-          action: sync
-          ignore:
-            - node_modules/
     env_file:
       - path: ./backend/.env
     networks:

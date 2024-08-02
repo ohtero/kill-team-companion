@@ -1,21 +1,26 @@
-FROM node:lts-alpine AS dev
-ENV NODE_ENV=development
-WORKDIR /app/backend
-COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
-RUN npm install --silent && mv node_modules ../
+FROM node:lts-alpine AS base
+WORKDIR /app/server
+COPY package.json package-lock.json ./
+RUN npm install --silent
+
+FROM base AS dev
+WORKDIR /app/server
 COPY . .
 EXPOSE 3000
-RUN chown -R node /app/backend
-USER node
+RUN chown -R myapp /app/backend
+USER myapp
 CMD ["npm", "run", "dev"]
 
+FROM base AS build
+COPY . .
+RUN npm run build
+
 FROM node:lts-alpine AS prod
-ENV NODE_ENV=production
-WORKDIR /app/backend
-COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
-RUN npm install --production --silent && mv node_modules ../
+WORKDIR /app/server
+COPY --from=build /app/server/dist ./dist
+RUN npm install --production --silent
 COPY . .
 EXPOSE 3000
 RUN chown -R node /app/backend
 USER node
-CMD ["npm", "start"]
+CMD ["npm", "run", "start"]
