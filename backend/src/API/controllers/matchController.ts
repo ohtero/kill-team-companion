@@ -24,7 +24,7 @@ async function createMatch(req: Request, res: Response): Promise<void> {
         ? error.message
         : 'Server error! Match could not be created..';
     res.status(500).json(message);
-    console.log('MATCH CREATION ERROR: ' + err);
+    console.error('MATCH CREATION ERROR: ', error);
   }
 }
 
@@ -46,7 +46,7 @@ async function getMatchData(req: Request, res: Response): Promise<void> {
         ? error.message
         : 'Server error! Player could not be added.';
     res.status(500).json(message);
-    console.log('MATCH DATA FETCHING ERROR: ' + err);
+    console.error('MATCH DATA FETCHING ERROR: ', error);
   }
 }
 
@@ -68,55 +68,9 @@ async function addNewPlayer(req: Request, res: Response): Promise<void> {
         ? error.message
         : 'Server error! Player could not be added.';
     res.status(500).json(message);
-    console.log('NEW PLAYER ADDITION ERROR: ' + error.stack);
+    console.error('NEW PLAYER ADDITION ERROR: ', error);
   }
 }
-
-// async function modifyPlayerPoints(req: Request, res: Response): Promise<void> {
-//   try {
-//     const dbResponse = await modifyPointsInDb(req);
-//     if (dbResponse) {
-//       res.status(200).json();
-//       io.on('connection', (socket) => {
-//         io.emit('playerPointsUpdate', dbResponse);
-//       });
-//     } else {
-//       throw new AppError(
-//         'dbError',
-//         'Database failure! Player could not be added.'
-//       );
-//     }
-//   } catch (error) {
-//     const err = error as Error;
-//     const message =
-//       err.name === 'dbError'
-//         ? err.message
-//         : 'Server error! Player could not be added.';
-//     res.status(500).json(message);
-//   }
-// }
-
-// async function modifyTurnCount(req: Request, res: Response): Promise<void> {
-//   try {
-//     const dbResponse = await updateTurnCountToDb(req);
-//     if (dbResponse) {
-//       res.status(200).json(dbResponse);
-//       // io.emit('turnCountUpdate', dbResponse);
-//     } else {
-//       throw new AppError(
-//         'dbError',
-//         'Database failure! Player could not be added.'
-//       );
-//     }
-//   } catch (error) {
-//     const err = error as Error;
-//     const message =
-//       err.name === 'dbError'
-//         ? err.message
-//         : 'Server error! Player could not be added.';
-//     res.status(500).json(message);
-//   }
-// }
 
 export {
   createMatch,
