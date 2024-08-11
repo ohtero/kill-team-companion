@@ -7,15 +7,14 @@ export const theme: DefaultTheme = {
   colors: {
     primary: '220, 15%, 30%',
     secondary: '220, 20%, 40%',
-    // secondary: '220, 19%, 46%',
-    secondaryLight: '220, 20%, 60%',
-    // secondaryLight: '220, 19%, 60%',
+    secondaryLight: '220, 15%, 50%',
     tertiary: '32, 100%, 52%',
+    tertiaryMid: '32, 100%, 60%',
     tertiaryLight: '32, 100%, 75%'
   },
   shadow: {
     light: '4px 4px #888',
-    dark: '4px 4px #333',
+    dark: '3px 3px #333',
     softDarkBottom: '0px 4px 10px #333'
   }
 };
