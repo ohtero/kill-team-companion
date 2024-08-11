@@ -13,7 +13,7 @@ export function GenericButton({
     <Button
       type={type}
       name={name}
-      onClick={handleClick}
+      onClick={void handleClick}
       disabled={disabled}
       $orange={$orange}
     >
