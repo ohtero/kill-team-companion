@@ -4,9 +4,9 @@ import { Server } from 'socket.io';
 import pg from 'pg';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { matchRouter } from './src/API/routers/matchRouter';
-import connectToDb from './src/API/middleware/connectToDb';
-import { socketListeners } from './src/webSockets/matchListeners';
+import { matchRouter } from './API/routers/matchRouter.js';
+import connectToDb from './API/middleware/connectToDb.js';
+import { socketListeners } from './webSockets/matchListeners.js';
 
 const app = express();
 const server = createServer(app);
@@ -53,5 +53,3 @@ app.use(cors());
 app.use('/match', connectToDb as RequestHandler, matchRouter);
 
 server.listen(port, () => console.log(`Listening on port ${port}`));
-
-// app.listen(port, () => console.log(`Listening on ${port}`))
