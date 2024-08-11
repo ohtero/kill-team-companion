@@ -15,9 +15,20 @@ export default function MatchMainPage() {
 
   return (
     <ComponentWrapper>
+      <MatchCreate>
       <ContentSection>
+          <ContentHeader>CREATE MATCH</ContentHeader>
+          <CreateMatchForm />
+        </ContentSection>
+      </MatchCreate>
+      <JoinMatch>
+        <DisabledOverlay />
         <ContentHeader>JOIN MATCH</ContentHeader>
-        <Form onSubmit={placeholderFunction}>
+        <Form
+          onSubmit={() => {
+            return;
+          }}
+        >
           <FormSection>
             <label htmlFor="matchSearch">Match Id (10 characters)</label>
             <input
