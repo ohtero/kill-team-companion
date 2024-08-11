@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 import { TurnIndicator } from './turnIndicator';
 import { useMatchContext } from '../context/matchContext';
+import { ContentHeader } from '../../../components/UI/contentHeader';
 
 export function TurnCounter() {
   const { matchData, modifyTurnCount } = useMatchContext();
   return (
     <TurningPointContainer>
-      <h4>Turning Point</h4>
+      <ContentHeader>Turning Point</ContentHeader>
       <Counter>
         <button
           onClick={() =>

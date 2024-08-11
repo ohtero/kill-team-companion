@@ -91,14 +91,13 @@ const Players = styled.div`
     flex-wrap: wrap;
     justify-content: center;
     border: solid 2px HSLA(${(props) => props.theme.colors.primary});
-    background: HSLA(${(props) => props.theme.colors.secondaryLight}, 1);
   }
 
   li {
-    background: HSLA(${(props) => props.theme.colors.secondaryLight}, 1);
+    background: #ccc;
     border: solid 1px HSLA(${(props) => props.theme.colors.primary}, 1);
     padding: 4px 8px;
-    color: white;
+    color: black;
     border-radius: 5px;
   }
 `;

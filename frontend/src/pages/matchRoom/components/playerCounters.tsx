@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Counter } from './counter';
 import { useMatchContext } from '../context/matchContext';
+import { ContentHeader } from '../../../components/UI/contentHeader';
 
 export function PlayerCounters() {
   const { matchData } = useMatchContext();
@@ -41,7 +42,7 @@ export function PlayerCounters() {
 
   return (
     <PlayerCountersContainer>
-      <h4>Player Points</h4>
+      <CounterHeader>Player Points</CounterHeader>
       <section className="player-names">{playerNames}</section>
       <CounterSection>
         <h5>Command Points</h5>
@@ -102,6 +103,10 @@ const PlayerCountersContainer = styled.section`
     color: white;
     letter-spacing: 1px;
   }
+`;
+
+const CounterHeader = styled(ContentHeader)`
+  padding-bottom: 32px;
 `;
 
 const CounterSection = styled.section`

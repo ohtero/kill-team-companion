@@ -6,6 +6,7 @@ import { MatchDetails } from '../features/matchDetails';
 import { TabName } from '../types';
 import { MatchCounters } from '../features/matchCounters';
 import { MissionDetails } from '../features/matchMission';
+import { Device } from '../../../globalStyling/breakpoints';
 
 export function MatchFeaturesView() {
   const [activeTab, setActiveTab] = useState<TabName>('details');
@@ -44,4 +45,9 @@ export const ExtendedContentSection = styled(ContentSection)`
   padding: 0px;
   border: none;
   overflow-y: auto;
+  border-radius: 0px 0px 5px 5px;
+
+  @media (max-width: ${Device.smMax}) {
+    border-radius: 0px;
+  }
 `;

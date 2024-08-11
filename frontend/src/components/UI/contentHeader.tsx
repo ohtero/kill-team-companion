@@ -1,7 +1,13 @@
 import styled from 'styled-components';
 
-export function ContentHeader({ children }: GenericProps) {
-  return <Header>{children}</Header>;
+export function ContentHeader({
+  children,
+  className
+}: {
+  children: string;
+  className?: string;
+}) {
+  return <Header className={className}>{children}</Header>;
 }
 
 const Header = styled.h2`
@@ -9,6 +15,5 @@ const Header = styled.h2`
   padding-bottom: 16px;
   text-align: center;
   color: HSLA(${(props) => props.theme.colors.tertiary}, 1);
-  props.theme.colors.tertiary}, 1);
-  text-shadow: ${(props) => props.theme.shadow.dark};
+  filter: drop-shadow(${(props) => props.theme.shadow.dark});
 `;

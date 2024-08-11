@@ -19,4 +19,10 @@ export const StyledLink = styled(Link)<{ $color?: 'light' | 'dark' }>`
   text-decoration: none;
   justify-content: center;
   width: 100%;
+  &:hover {
+    background: HSL(${(props) => props.theme.colors.tertiaryMid});
+  }
+  &:active {
+    background: HSL(${(props) => props.theme.colors.tertiaryLight});
+  }
 `;

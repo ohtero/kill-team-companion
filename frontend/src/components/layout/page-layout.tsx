@@ -33,7 +33,7 @@ const PageContainer = styled.div<{ $isMatchPage: boolean }>`
   min-height: 100vh;
   min-height: 100svh;
   row-gap: 3rem;
-  background-image: url('src/assets/images/background.jpg');
+  background: HSLA(${(props) => props.theme.colors.secondary});
   background-size: cover;
   background-attachment: fixed;
   @media (max-width: ${Device.smMin}) {
@@ -56,7 +56,8 @@ const PageContainer = styled.div<{ $isMatchPage: boolean }>`
     grid-column: center-start / center-end;
     height: fit-content;
     justify-items: center;
-    background: HSLA(${(props) => props.theme.colors.primary}, 1);
+    // background: HSLA(${(props) => props.theme.colors.primary}, 1);
+    // background: HSLA(${(props) => props.theme.colors.secondaryLight});
   }
 
   .main-match {
@@ -70,14 +71,13 @@ const PageContainer = styled.div<{ $isMatchPage: boolean }>`
     grid-row: footer-start / footer-end;
     grid-column: left-start / right-end;
     height: 5rem;
-    background: HSLA(${(props) => props.theme.colors.secondary}, 0.85);
+    background: HSLA(${(props) => props.theme.colors.primary}, 0.5);
   }
 
   .footer-default {
     grid-row: footer-start / footer-end;
     grid-column: left-start / right-end;
     height: 5rem;
-    background: HSLA(${(props) => props.theme.colors.secondary}, 0.85);
   }
 
   .footer-match {
