@@ -1,0 +1,25 @@
+services:
+  frontend:
+    image: cilent_prod
+    container_name: cilent_prod
+    build:
+      context: ./frontend
+      target: prod
+    ports:
+      - '8000:8000'
+    networks:
+      ktc_net:
+        ipv4_address: 192.168.200.5
+  backend:
+    image: server_prod
+    container_name: server_prod
+    build:
+      context: ./backend
+      target: prod
+    ports:
+      - '3000:3000'
+    env_file:
+      - path: ./backend/.env
+    networks:
+      ktc_net:
+        ipv4_address: 192.168.200.4

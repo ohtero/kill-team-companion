@@ -1,0 +1,48 @@
+services:
+  frontend:
+    image: client_dev
+    container_name: client_dev
+    build:
+      context: ./frontend
+      target: dev
+    develop:
+      watch:
+        - action: sync
+          path: ./frontend
+          target: app/client
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: ./frontend/package.json
+  backend:
+    image: server_dev
+    container_name: server_dev
+    build:
+      context: ./backend
+      target: dev
+    develop:
+      watch:
+        - action: sync
+          path: ./backend
+          target: app/server
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: ./backend/package.json
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - '5050:80'
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin/data
+    networks:
+      ktc_net:
+        ipv4_address: 192.168.200.3
+
+volumes:
+  pgadmin_data:
