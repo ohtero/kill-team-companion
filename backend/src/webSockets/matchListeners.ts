@@ -1,5 +1,5 @@
 import { Server } from 'socket.io';
-import { updatePlayerPoints, updateTurningPoint } from './listenerFunctions';
+import { updatePlayerPoints, updateTurningPoint } from './listenerFunctions.js';
 
 export const socketListeners = (io: Server) => {
   io.on('connection', (socket) => {

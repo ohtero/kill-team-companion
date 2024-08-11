@@ -3,9 +3,7 @@ import {
   createMatch,
   getMatchData,
   addNewPlayer
-  // modifyPlayerPoints,
-  // modifyTurnCount
-} from '../controllers/matchController';
+} from '../controllers/matchController.js';
 
 const matchRouter = Router();
 

@@ -3,8 +3,8 @@ import {
   insertNewMatchData,
   addPlayerToMatch,
   getMatchDataFromDb
-} from '../../services/matchServices';
-import { AppError } from '../../classExtensions/errorExtension';
+} from '../../services/matchServices.js';
+import { AppError } from '../../classExtensions/errorExtension.js';
 
 async function createMatch(req: Request, res: Response): Promise<void> {
   try {

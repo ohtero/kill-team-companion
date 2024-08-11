@@ -1,7 +1,7 @@
 import { Request } from 'express';
 import { nanoid } from 'nanoid';
-import { MatchData } from '../types/databaseTypes';
-import { connectToPool } from '../API/middleware/connectToDb';
+import { MatchData } from '../types/databaseTypes.js';
+import { connectToPool } from '../API/middleware/connectToDb.js';
 
 export async function getMatchDataFromDb(
   req: Request

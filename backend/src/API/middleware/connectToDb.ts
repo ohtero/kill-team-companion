@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { pool } from '../../../index.ts';
+import { pool } from '../../index.js';
 import { PoolClient } from 'pg';
 
 export default async function connectToDb(

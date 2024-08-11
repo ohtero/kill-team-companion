@@ -1,9 +1,9 @@
 import { Server, Socket } from 'socket.io';
-import { AppError } from '../classExtensions/errorExtension';
+import { AppError } from '../classExtensions/errorExtension.js';
 import {
   modifyPointsInDb,
   updateTurnCountToDb
-} from '../services/matchServices';
+} from '../services/matchServices.js';
 
 export async function updatePlayerPoints(
   io: Server,
