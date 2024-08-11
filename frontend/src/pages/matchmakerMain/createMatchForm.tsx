@@ -44,8 +44,8 @@ export function CreateMatchForm() {
       });
 
       if (res.status === 200) {
-        const data = await res.json();
-        navigateToMatchEntry(data);
+        const data: unknown = await res.json();
+        typeof data === 'string' && navigateToMatchEntry(data);
       } else {
         throw new Error(`Could not create match! Status: ${res.status}`);
       }
@@ -64,7 +64,7 @@ export function CreateMatchForm() {
   function navigateToMatchEntry(matchId: string) {
     navigate({
       pathname: '/match',
-      search: `?${createSearchParams([['id', matchId]])}`
+      search: `?${createSearchParams([['id', matchId]]).toString()}`
     });
   }
 
