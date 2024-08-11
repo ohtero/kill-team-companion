@@ -6,11 +6,11 @@ import {
   createRoutesFromElements
 } from 'react-router-dom';
 // Components
-import PageLayout from './components/layout/page-layout.tsx';
-import Homepage from './pages/homepage.tsx';
-import MatchMainPage from './pages/matchmakerMain/matchmakerIndex.tsx';
-import ActiveMatchPage from './pages/matchRoom/activeMatchPage.tsx';
-import { getMatchData } from './routeLoaders/getMatchData.ts';
+import PageLayout from './components/layout/page-layout';
+import Homepage from './pages/homepage';
+import MatchMainPage from './pages/matchmakerMain/matchmakerIndex';
+import ActiveMatchPage from './pages/matchRoom/activeMatchPage';
+import { getMatchData } from './routeLoaders/getMatchData';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<PageLayout />}>
