@@ -10,7 +10,5 @@ const matchRouter = Router();
 matchRouter.post('/new-match', createMatch as RequestHandler);
 matchRouter.get('/match-data/:matchId', getMatchData as RequestHandler);
 matchRouter.post('/new-player/:matchId', addNewPlayer as RequestHandler);
-// matchRouter.post('/:matchId/:playerIndex/:point/:type', modifyPlayerPoints);
-// matchRouter.post('/turn/:matchId/:type', modifyTurnCount);
 
 export { matchRouter };
