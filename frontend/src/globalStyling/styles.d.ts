@@ -14,6 +14,7 @@ interface Colors {
   secondary: string;
   secondaryLight: string;
   tertiary: string;
+  tertiaryMid: string;
   tertiaryLight: string;
 }
 
