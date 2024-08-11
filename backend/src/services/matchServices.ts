@@ -114,7 +114,7 @@ export async function modifyPointsInDb(
   playerIndex: number,
   point: string,
   type: string
-): Promise<{} | null> {
+): Promise<object | null> {
   const client = await connectToPool();
   const playerPointCol = `player${playerIndex + 1}_${point}`;
   const text =
@@ -127,7 +127,11 @@ export async function modifyPointsInDb(
   };
   try {
     const data = await client?.query(query);
-    const pointData = Object.values(data?.rows[0])[0] as number;
+    let dataRow: [Record<string, number>] = [{ point: 0 }];
+    if (data) {
+      dataRow = Object.values(data.rows) as [Record<string, number>];
+    }
+    const pointData = dataRow[0];
     const playerPointData = {
       playerIndex: playerIndex,
       newPoints: pointData,
