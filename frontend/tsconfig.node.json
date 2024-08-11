@@ -7,15 +7,16 @@
     "resolveJsonModule": true,
     "target": "ES2020",
     "useDefineForClassFields": true,
-    "lib": ["ESNext"],
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "outDir": "dist",
     "isolatedModules": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "jsx": "react-jsx",
-    "types": ["vitest/jsdom", "vitest/globals", "@testing-library/jest-dom"]
+    "types": ["vitest/jsdom", "vitest/globals", "@testing-library/jest-dom"],
+    "skipLibCheck": true
   },
-  "include": ["src/**/*", "vite.config.ts"]
-  // "extends": "../tsconfig.base.json"
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "./src/tests"]
 }
