@@ -86,11 +86,11 @@ describe('Match counters', () => {
         expect(turn1Indicator).toHaveStyle(
           'border: 4px solid HSLA$(${props.theme.colors.tertiary})'
         );
-        expect(turn2Indicator).toHaveStyle('border: none');
+        expect(turn2Indicator).toHaveStyle('border: 4px solid transparent');
 
         fireEvent.click(increaseTurnBtn);
 
-        expect(turn1Indicator).toHaveStyle('border: none');
+        expect(turn1Indicator).toHaveStyle('border: 4px solid transparent');
         expect(turn2Indicator).toHaveStyle(
           'border: 4px solid HSLA$(${props.theme.colors.tertiary})'
         );
