@@ -78,7 +78,7 @@ export function CreateMatchForm() {
       <FormSection>
         <div className="label-and-error">
           <label htmlFor="matchName">Match Name (Max 50 characters)</label>
-          <ErrorMsg>{errors.matchName && errors.matchName.message}</ErrorMsg>
+          <ErrorMsg>{errors?.matchName?.message}</ErrorMsg>
         </div>
         <input
           type="text"
@@ -151,9 +151,7 @@ export function CreateMatchForm() {
         >
           {creationIsPending ? 'CREATING...' : ' CREATE'}
         </GenericButton>
-        <ErrorMsg>
-          {errors.root?.serverError && errors.root.serverError.message}
-        </ErrorMsg>
+        <ErrorMsg>{errors?.root?.serverError?.message}</ErrorMsg>
       </FormSection>
     </Form>
   );
