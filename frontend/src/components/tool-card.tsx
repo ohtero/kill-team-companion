@@ -28,7 +28,7 @@ const Card = styled.div`
   background: #fff;
   min-width: 5rem;
   max-width: 30rem;
-  border-radius: 3px;
+  border-radius: 5px;
   box-shadow: ${(props) => props.theme.shadow.dark};
   text-align: center;
 
@@ -43,6 +43,8 @@ const Card = styled.div`
     padding: 1rem;
     border-radius: 3px 3px 0px 0px;
     border-bottom: 2px solid black;
+    background: HSLA(${(props) => props.theme.colors.secondary}, 1);
+    color: white;
   }
 
   .card-text {
