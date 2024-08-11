@@ -6,10 +6,9 @@ export const socketListeners = (io: Server) => {
     console.log(`${socket.id} connected`);
     socket.on('disconnect', () => {
       console.log(`${socket.id} disconnected`);
-      socket.leave;
     });
     socket.on('joinRoom', async (matchId: string) => {
-      socket.join(matchId);
+      await socket.join(matchId);
     });
     socket.on('newPlayer', (data: { playerName: string; matchId: string }) => {
       io.to(data.matchId).emit('playerName', data.playerName);
@@ -22,11 +21,11 @@ export const socketListeners = (io: Server) => {
         modType: string;
         matchId: string;
       }) => {
-        updatePlayerPoints(io, socket, data);
+        void updatePlayerPoints(io, socket, data);
       }
     );
     socket.on('turningPoint', (data: { matchId: string; modType: string }) => {
-      updateTurningPoint(io, socket, data);
+      void updateTurningPoint(io, socket, data);
     });
   });
 };
