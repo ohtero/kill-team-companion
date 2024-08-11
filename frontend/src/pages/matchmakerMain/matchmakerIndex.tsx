@@ -11,12 +11,10 @@ import { CreateMatchForm } from './createMatchForm';
  */
 
 export default function MatchMainPage() {
-  function placeholderFunction() {}
-
   return (
     <ComponentWrapper>
       <MatchCreate>
-      <ContentSection>
+        <ContentSection>
           <ContentHeader>CREATE MATCH</ContentHeader>
           <CreateMatchForm />
         </ContentSection>
@@ -36,28 +34,23 @@ export default function MatchMainPage() {
               name="matchSearch"
               id="matchSearch"
               placeholder="Match ID"
+              disabled
             />
           </FormSection>
           <FormSection>
-            <GenericButton type="submit" name="initiateSearch" $orange>
+            <GenericButton type="submit" name="initiateSearch" $orange disabled>
               SEARCH
             </GenericButton>
           </FormSection>
         </Form>
-      </ContentSection>
-      <MatchCreate>
-        <ContentSection>
-          <ContentHeader>CREATE MATCH</ContentHeader>
-          <CreateMatchForm />
-        </ContentSection>
-      </MatchCreate>
+        {/* </DisabledOverlay> */}
+      </JoinMatch>
     </ComponentWrapper>
   );
 }
 
 const ComponentWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
   flex-direction: column;
   width: 100%;
   gap: 64px;
@@ -104,4 +97,16 @@ const MatchCreate = styled.section`
     display: flex;
     gap: 16px;
   }
+`;
+
+const JoinMatch = styled(ContentSection)`
+  opacity: 25%;
+  filter: grayscale(75%);
+`;
+
+const DisabledOverlay = styled.div`
+  background: #aaa;
+  position: fixed;
+  width: 100%;
+  height: inherit;
 `;
