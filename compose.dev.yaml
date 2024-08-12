@@ -14,14 +14,16 @@ services:
             - node_modules/
         - action: rebuild
           path: ./frontend/package.json
-    ports:
-      - '5173:5173'
   backend:
     image: server_dev
     container_name: server_dev
     build:
       context: ./backend
       target: dev
+    env_file:
+      - '.env'
+    environment:
+      - CLIENT_URI=http://frontend:5173
     develop:
       watch:
         - action: sync
@@ -31,8 +33,6 @@ services:
             - node_modules/
         - action: rebuild
           path: ./backend/package.json
-    ports:
-      - '3000:3000'
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin4

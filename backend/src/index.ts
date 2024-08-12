@@ -11,24 +11,19 @@ import { socketListeners } from './webSockets/matchListeners.js';
 const app = express();
 const server = createServer(app);
 export const io = new Server(server, {
-  cors: { origin: 'http://localhost:5173' },
+  cors: { origin: process.env.CLIENT_URI },
   connectionStateRecovery: {}
 });
 
 app.use(express.json());
 dotenv.config();
 
-const port = process.env.PORT ?? 3000;
-// const connectionString = process.env.PGHOST;
+const port = 3000;
 const { Pool } = pg;
 
 export const pool = new Pool({
-  // connectionString: 'postgresql://root:root@192.168.200.2:5432/ktc',
-  host: '192.168.200.2',
-  port: 5432,
-  user: 'root',
-  password: 'root',
-  database: 'ktc',
+  connectionString: `postgresql://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@${process.env.POSTGRES_HOST}:${process.env.POSTGRES_PORT}/${process.env.POSTGRES_DB}`,
+
   max: 50,
   idleTimeoutMillis: 60000
 });
