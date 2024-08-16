@@ -12,7 +12,7 @@ export async function getMatchData({
   const matchId = url.searchParams.get('id');
   try {
     const res = await fetch(
-      `http://localhost:3000/match/match-data/${matchId}`,
+      `${import.meta.env.VITE_API_URL}/match/match-data/${matchId}`,
       {
         method: 'GET',
         mode: 'cors'

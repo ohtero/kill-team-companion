@@ -34,14 +34,17 @@ export function CreateMatchForm() {
   ) => {
     try {
       setCreationIsPending(true);
-      const res = await fetch('http://localhost:3000/match/new-match', {
-        method: 'POST',
-        mode: 'cors',
-        body: JSON.stringify({ matchName: formData.matchName }),
-        headers: {
-          'content-type': 'application/json'
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/match/new-match`,
+        {
+          method: 'POST',
+          mode: 'cors',
+          body: JSON.stringify({ matchName: formData.matchName }),
+          headers: {
+            'content-type': 'application/json'
+          }
         }
-      });
+      );
 
       if (res.status === 200) {
         const data: unknown = await res.json();

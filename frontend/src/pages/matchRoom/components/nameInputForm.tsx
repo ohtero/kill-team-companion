@@ -33,7 +33,7 @@ export function NameInputForm({
 
     try {
       const res = await fetch(
-        `http://localhost:3000/match/new-player/${matchId}`,
+        `${import.meta.env.VITE_API_URL}/match/new-player/${matchId}`,
         {
           method: 'POST',
           headers: {
