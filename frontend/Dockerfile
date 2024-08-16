@@ -19,6 +19,6 @@ COPY --from=build /app/client/dist ./dist
 COPY package.json package-lock.json ./
 RUN npm install --production --silent
 RUN npm install -g serve
-EXPOSE 8000
-CMD ["serve", "-s", "dist", "-l", "8000"]
+EXPOSE 5173
+CMD ["serve", "-s", "dist", "-l", "5173"]
 
