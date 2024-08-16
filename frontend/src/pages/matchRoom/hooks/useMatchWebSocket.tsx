@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import io, { Socket } from 'socket.io-client';
 import { useMatchContext } from '../context/matchContext';
 
-export function useMatchWebSocket(url: string) {
+export function useMatchWebSocket() {
   const socketRef = useRef<Socket>();
   const {
     updateSocket,
@@ -33,7 +33,7 @@ export function useMatchWebSocket(url: string) {
   }
 
   useEffect(() => {
-    socketRef.current = io(url);
+    socketRef.current = io({ path: `${import.meta.env.VITE_WEBSOCKET_URL}` });
 
     socketRef.current.on('connect', handleConnect);
     socketRef.current.on('playerName', handlePlayerNameUpdate);
@@ -48,7 +48,7 @@ export function useMatchWebSocket(url: string) {
         socketRef.current.off('turningPointUpdate', handleTurningPointUpdate);
       }
     };
-  }, [url]);
+  }, []);
 
   return socketRef.current;
 }

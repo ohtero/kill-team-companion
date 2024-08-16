@@ -10,7 +10,7 @@ import { useMatchWebSocket } from './hooks/useMatchWebSocket';
 // TODO: Look into reducing useEffects if possible.
 
 export default function ActiveMatchPage() {
-  const socket = useMatchWebSocket('http://localhost:3000');
+  const socket = useMatchWebSocket();
   const location = useLocation();
   const localNameData = useSyncLocalStorage('playerName');
   const normalizedMatchData = useLoaderData() as NormalizedMatchData;
