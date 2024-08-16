@@ -3,24 +3,14 @@ services:
     networks:
       ktc_net:
         ipv4_address: 192.168.200.5
-    ports:
-      - '5173:5173'
   backend:
     networks:
       ktc_net:
         ipv4_address: 192.168.200.4
-    ports:
-      - '3000:3000'
   db:
     image: postgres
     container_name: postgres
-    ports:
-      - '5432:5432'
     restart: unless-stopped
-    environment:
-      POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
