@@ -129,7 +129,7 @@ export function MatchDataProvider({ children }: GenericProps) {
 
   function updatePlayerName(playerName: string) {
     setMatchData((draft) => {
-      for (let playerKey in draft.players) {
+      for (const playerKey in draft.players) {
         const player = playerKey as keyof NormalizedMatchData['players'];
         if (!draft.players[player].name) {
           draft.players[player].name = playerName;
