@@ -11,7 +11,9 @@ import { socketListeners } from './webSockets/matchListeners.js';
 const app = express();
 const server = createServer(app);
 export const io = new Server(server, {
-  cors: { origin: process.env.CLIENT_URI },
+  cors: {
+    origin: process.env.CLIENT_URL
+  },
   connectionStateRecovery: {}
 });
 
@@ -23,7 +25,6 @@ const { Pool } = pg;
 
 export const pool = new Pool({
   connectionString: `postgresql://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@${process.env.POSTGRES_HOST}:${process.env.POSTGRES_PORT}/${process.env.POSTGRES_DB}`,
-
   max: 50,
   idleTimeoutMillis: 60000
 });
@@ -39,12 +40,14 @@ io.engine.on('connection_error', (err) => {
 
 socketListeners(io);
 
-// const corsOptions = {
-//   origin: 'https://localhost:5173',
-//   methods: '*'
-// };
+const corsOptions = {
+  origin: process.env.CLIENT_URL,
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type']
+};
 
-app.use(cors());
+app.options('*', cors());
+app.use(cors(corsOptions));
 app.use('/match', connectToDb as RequestHandler, matchRouter);
 
 server.listen(port, () => console.log(`Listening on port ${port}`));
