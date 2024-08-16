@@ -127,11 +127,12 @@ export async function modifyPointsInDb(
   };
   try {
     const data = await client?.query(query);
-    let dataRow: [Record<string, number>] = [{ point: 0 }];
+    let dataRow: Record<string, number> = { point: 0 };
     if (data) {
-      dataRow = Object.values(data.rows) as [Record<string, number>];
+      dataRow = data.rows[0] as Record<string, number>;
     }
-    const pointData = dataRow[0];
+    const pointData = Object.values(dataRow)[0];
+
     const playerPointData = {
       playerIndex: playerIndex,
       newPoints: pointData,
