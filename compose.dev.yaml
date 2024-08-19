@@ -40,7 +40,7 @@ services:
     ports:
       - '3000:3000'
     env_file:
-      - '.env.dev'
+      - './.env.dev'
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin4
