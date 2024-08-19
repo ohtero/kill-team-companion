@@ -45,7 +45,7 @@ const Menu = styled.section<{ $isVisible: boolean }>`
   display: ${(props) => (props.$isVisible ? 'block' : 'none')};
   position: fixed;
   width: 100%;
-  background: HSLA(${(props) => props.theme.colors.primary}, 1);
+  background: white;
   top: 3rem;
   left: 0;
   z-index: 1;
