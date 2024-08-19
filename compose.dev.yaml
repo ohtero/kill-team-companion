@@ -14,6 +14,8 @@ services:
             - node_modules/
         - action: rebuild
           path: ./frontend/package.json
+        - action: rebuild
+          path: ./frontend/.env.development
     ports:
       - '5173:5173'
     env_file:
@@ -33,8 +35,8 @@ services:
             - node_modules/
         - action: rebuild
           path: ./backend/package.json
-    expose:
-      - '3000'
+        - action: rebuild
+          path: ./.env.dev
     env_file:
       - '.env.dev'
   pgadmin:
