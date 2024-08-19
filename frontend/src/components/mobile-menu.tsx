@@ -1,9 +1,25 @@
 import styled from 'styled-components';
 import { TopNavLink } from './styling/top-nav-link';
+import { useEffect, useRef } from 'react';
 
 export function MobileMenu({ isVisible, hideMenu }: MenuProps) {
+  const menuRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    function hide(e: Event) {
+      if (
+        menuRef.current &&
+        e.target instanceof Node &&
+        !menuRef.current.contains(e.target)
+      ) {
+        hideMenu();
+      }
+    }
+    document.addEventListener('mousedown', hide);
+  }, []);
+
   return (
-    <Menu $isVisible={isVisible}>
+    <Menu $isVisible={isVisible} ref={menuRef}>
       <ul>
         <li>
           <TopNavLink color="dark" to={'/matchmaker'} handleClick={hideMenu}>
