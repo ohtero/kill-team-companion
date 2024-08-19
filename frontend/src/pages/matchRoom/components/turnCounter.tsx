@@ -10,6 +10,7 @@ export function TurnCounter() {
       <ContentHeader>Turning Point</ContentHeader>
       <Counter>
         <button
+          className="subtract"
           onClick={() =>
             matchData.turningPoint > 1 && modifyTurnCount('subtract')
           }
@@ -39,6 +40,7 @@ export function TurnCounter() {
           />
         </ul>
         <button
+          className="add"
           onClick={() => matchData.turningPoint < 4 && modifyTurnCount('add')}
         >
           +
@@ -64,19 +66,34 @@ const TurningPointContainer = styled.section`
 const Counter = styled.div`
   display: flex;
   width: 100%;
-  background: #eee;
+  background: #fff;
   height: fit-content;
+  border-radius: 10px 10px 10px 10px;
 
   ul {
+    border-bottom: 4px solid HSL(200, 10%, 70%);
+    border-top: 4px solid HSL(200, 10%, 70%);
     display: flex;
     width: 100%;
     list-style: none;
     padding: 0;
     align-items: center;
     font-size: 2rem;
+    background: HSL(200, 10%, 80%);
+    gap: 2px;
   }
 
   button {
     aspect-ratio: 1 / 1;
+    border: 4px solid HSL(200, 10%, 70%);
+    background: linear-gradient(to top, HSL(200, 10%, 80%) 0%, #fff 60%);
+  }
+
+  .add {
+    border-radius: 0 10px 10px 0;
+  }
+
+  .subtract {
+    border-radius: 10px 0 0 10px;
   }
 `;

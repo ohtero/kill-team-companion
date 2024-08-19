@@ -21,9 +21,10 @@ const Indicator = styled.li<{ $ownTurn: number; $currentTurn: number }>`
   justify-content: center;
   width: 100%;
   height: 60px;
+  background: white;
 
   border: ${(props) =>
     props.$ownTurn === props.$currentTurn
-      ? `4px solid HSLA(${props.theme.colors.tertiary})`
-      : '4px solid transparent'};
+      ? `3px solid HSLA(${props.theme.colors.tertiary})`
+      : '3px solid transparent'};
 `;
