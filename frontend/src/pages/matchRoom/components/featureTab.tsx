@@ -31,12 +31,12 @@ const Tab = styled.button<{ $active: TabName; $thisTab: TabName }>`
   border: none;
   // border-right: solid 1px HSLA(${(props) =>
     props.theme.colors.secondary}, 1);
-  // border-left: solid 1px HSLA(${(props) => props.theme.colors.secondary}, 1);
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 500;
   @media (max-width: ${Device.smMax}) {
     font-size: 0.8rem;
     border-radius: 0px;
+    padding: 15px 0 15px 0;
   }
 `;
