@@ -1,33 +1,30 @@
 import styled from 'styled-components';
 import { PlayerPoint } from '../types';
-import { useMatchContext } from '../context/matchContext';
+import { PointModifierButton } from './pointModifierButton';
 
 export function Counter({ points, playerIndex, pointType }: PlayerPoint) {
-  const { modifyPlayerPoints } = useMatchContext();
   return (
     <CounterContainer>
       <div className="wrapper">
-        <button
-          aria-label={`add ${pointType} to player${playerIndex + 1}`}
-          className="add-point"
-          onClick={() => modifyPlayerPoints(playerIndex, pointType, 'add')}
+        <AddPointButton
+          pointType={pointType}
+          playerIndex={playerIndex}
+          operation="add"
         >
           +
-        </button>
+        </AddPointButton>
         <div className="point-display">
           <output role={`player${playerIndex + 1}${pointType}`}>
             {points}
           </output>
         </div>
-        <button
-          aria-label={`subtract ${pointType} from player${playerIndex + 1}`}
-          className="sub-point"
-          onClick={() =>
-            points > 0 && modifyPlayerPoints(playerIndex, pointType, 'subtract')
-          }
+        <SubtractPointButton
+          pointType={pointType}
+          playerIndex={playerIndex}
+          operation="subtract"
         >
           -
-        </button>
+        </SubtractPointButton>
       </div>
     </CounterContainer>
   );
@@ -66,15 +63,16 @@ const CounterContainer = styled.div`
     border-left: 4px solid HSL(200, 10%, 70%);
     border-right: 4px solid HSL(200, 10%, 70%);
   }
+`;
 
-  .add-point {
-    border-radius: 10px 10px 0 0;
-    font-size: 2rem;
-    background: linear-gradient(to top, HSL(200, 10%, 80%) 0%, #fff 50%);
-  }
-  .sub-point {
-    border-radius: 0 0 10px 10px;
-    font-size: 2rem;
-    background: linear-gradient(to top, HSL(200, 10%, 80%) 0%, #fff 50%);
-  }
+const AddPointButton = styled(PointModifierButton)`
+  border-radius: 10px 10px 0 0;
+  font-size: 2rem;
+  background: linear-gradient(to top, HSL(200, 10%, 80%) 0%, #fff 50%);
+`;
+
+const SubtractPointButton = styled(PointModifierButton)`
+  border-radius: 0 0 10px 10px;
+  font-size: 2rem;
+  background: linear-gradient(to top, HSL(200, 10%, 80%) 0%, #fff 50%);
 `;
