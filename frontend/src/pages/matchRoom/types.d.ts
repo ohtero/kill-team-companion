@@ -41,6 +41,13 @@ interface TabNavProps {
   updateActiveTab: (tabName: TabName) => void;
 }
 
+interface PointModifyButtonProps {
+  pointType: 'cp' | 'vp';
+  playerIndex: number;
+  children: string;
+  operation: 'add' | 'subtract';
+  className?: string;
+}
 interface PlayerPoint {
   points: number;
   playerIndex: number;
