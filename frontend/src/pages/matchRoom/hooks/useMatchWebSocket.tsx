@@ -33,7 +33,11 @@ export function useMatchWebSocket() {
   }
 
   useEffect(() => {
-    socketRef.current = io({ path: `${import.meta.env.VITE_WEBSOCKET_URL}` });
+    if (import.meta.env.MODE === 'development') {
+      socketRef.current = io(`${import.meta.env.VITE_WEBSOCKET_URL}`);
+    } else {
+      socketRef.current = io({ path: `${import.meta.env.VITE_WEBSOCKET_URL}` });
+    }
 
     socketRef.current.on('connect', handleConnect);
     socketRef.current.on('playerName', handlePlayerNameUpdate);
