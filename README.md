@@ -6,7 +6,7 @@ In the future, the site will feature other tools for managing different aspects 
 
 ## Roadmap
 
-- [x] Matchmaking and point manager
+- [x] Matchmaking and point tracking
 - [ ] Tac Ops (secondary objective) manager *(WIP)*
 - [ ] Team Roster Manager *(WIP)*
 - [ ] User accounts and stat tracking
