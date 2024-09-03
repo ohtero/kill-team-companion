@@ -56,5 +56,3 @@ If you want to have the matchmaking functionality, you need to create the follow
 	draw boolean
 );
 ```
-
-Running the production version is not advised, as it will most likely refuse to build and work correctly.
