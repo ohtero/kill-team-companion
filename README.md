@@ -22,9 +22,11 @@ For the time being the site does not have a domain name, and is accessed directl
 ## Local Installation
 
 The project containers are ran with Docker Compose. if you wish to run the development version locally, you can build and start it with the following command: 
-`docker compose -f compose.yaml -f compose.dev.yaml up --build`
+
+```docker compose -f compose.yaml -f compose.dev.yaml up```
 
 If you want to have the matchmaking functionality, you need to create the following table inside the Postgres container: 
+
 ```
  CREATE TABLE matches (
 	match_id varchar(72) PRIMARY KEY,
