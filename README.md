@@ -25,7 +25,7 @@ The project containers are ran with Docker Compose. if you wish to run the devel
 `docker compose -f compose.yaml -f compose.dev.yaml up --build`
 
 If you want to have the matchmaking functionality, you need to create the following table inside the Postgres container: 
-`
+```
  CREATE TABLE matches (
 	match_id varchar(72) PRIMARY KEY,
 	match_name varchar(50),
@@ -53,6 +53,6 @@ If you want to have the matchmaking functionality, you need to create the follow
 	 winnder_name varchar(72),
 	 draw boolean
 );
-`
+```
 
 Running the production version is not advised, as it will most likely refuse to build and work correctly.
