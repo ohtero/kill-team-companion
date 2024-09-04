@@ -25,7 +25,7 @@ The project containers are ran with Docker Compose. if you wish to run the devel
 
 ```docker compose -f compose.yaml -f compose.dev.yaml up```
 
-If you want to have the matchmaking functionality, you need to create the following table inside the Postgres container: 
+If you want to test the matchmaking functionality, you need to create the following table inside the Postgres container: 
 
 ```
  CREATE TABLE matches (
