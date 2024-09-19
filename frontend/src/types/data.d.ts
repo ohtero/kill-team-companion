@@ -45,3 +45,11 @@ export interface NormalizedMatchData {
   };
   draw: boolean;
 }
+
+interface TacOp {
+  name: string;
+  archetype: string;
+  action: { cost: string; text: string; actionName: string };
+  text: [string];
+  no_cq: boolean;
+}
