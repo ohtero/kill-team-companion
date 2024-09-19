@@ -14,11 +14,11 @@ export function FeatureTabsNavbar({ activeTab, updateActiveTab }: TabNavProps) {
         match
       </FeatureTab>
       <FeatureTab
-        tabName="mission"
+        tabName="tac ops"
         activeTab={activeTab}
         handleClick={updateActiveTab}
       >
-        mission
+        tac ops
       </FeatureTab>
       <FeatureTab
         tabName="counters"

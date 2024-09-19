@@ -5,7 +5,7 @@ import { ContentSection } from '../../../components/UI/contentSection';
 import { MatchDetails } from '../features/matchDetails';
 import { TabName } from '../types';
 import { MatchCounters } from '../features/matchCounters';
-import { MissionDetails } from '../features/matchMission';
+import { TacOpsSelection } from '../features/tacOps';
 import { Device } from '../../../globalStyling/breakpoints';
 
 export function MatchFeaturesView() {
@@ -25,7 +25,7 @@ export function MatchFeaturesView() {
         <ExtendedContentSection data-testid="match">
           {activeTab === 'details' && <MatchDetails />}
           {activeTab === 'counters' && <MatchCounters />}
-          {activeTab === 'mission' && <MissionDetails />}
+          {activeTab === 'tac ops' && <TacOpsSelection />}
         </ExtendedContentSection>
       </FeatureViewWrapper>
     </>
