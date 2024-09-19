@@ -47,7 +47,7 @@ export async function addPlayerToMatch(
 ): Promise<{ playerName: string; matchId: string } | null> {
   const client = req.dbClient;
   const { matchId } = req.params;
-  const { playerName } = req.body;
+  const playerName = req.body.playerName;
   const query = {
     text: `
       UPDATE matches 
