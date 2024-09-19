@@ -16,7 +16,7 @@ export async function getMatchData({
       }
     );
     if (res.ok) {
-      const data: [RawMatchData] = await res.json();
+      const data = (await res.json()) as [RawMatchData];
       const normalizedData = normalizeMatchData(data[0]);
       return normalizedData;
     }
