@@ -2,7 +2,7 @@ import { MatchEntry } from './features/matchEntry';
 import { useState, useEffect } from 'react';
 import { useLocation, useLoaderData } from 'react-router-dom';
 import { useSyncLocalStorage } from '../../hooks/useSyncLocalStorage';
-import { NormalizedMatchData } from '../../types/databaseTypes';
+import { NormalizedMatchData } from '../../types/data';
 import { MatchFeaturesView } from './components/matchFeaturesView';
 import { useMatchContext } from './context/matchContext';
 import { useMatchWebSocket } from './hooks/useMatchWebSocket';

@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from 'react';
 import { Socket } from 'socket.io-client';
 import { useImmer } from 'use-immer';
-import { NormalizedMatchData } from '../../../types/databaseTypes';
+import { NormalizedMatchData } from '../../../types/data';
 import { MatchContext } from '../types';
 import { changeTurnAndPoints } from './matchContextUtils';
 

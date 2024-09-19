@@ -1,5 +1,5 @@
 import { Socket } from 'socket.io-client';
-import { NormalizedMatchData } from '../../types/databaseTypes';
+import { NormalizedMatchData } from '../../types/data';
 import { SubmitHandler } from 'react-hook-form';
 
 interface MatchEntryFormInput {

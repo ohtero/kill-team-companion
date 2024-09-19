@@ -1,8 +1,5 @@
 import { LoaderFunctionArgs } from 'react-router-dom';
-import {
-  RawMatchData,
-  NormalizedMatchData
-} from '../../src/types/databaseTypes';
+import { RawMatchData, NormalizedMatchData } from '../types/data';
 import { normalizeMatchData } from '../pages/matchRoom/matchUtils/normalizeMatchData';
 
 export async function getMatchData({

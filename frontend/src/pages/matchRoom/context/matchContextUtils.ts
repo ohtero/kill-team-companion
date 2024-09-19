@@ -1,4 +1,4 @@
-import { NormalizedMatchData } from '../../../types/databaseTypes';
+import { NormalizedMatchData } from '../../../types/data';
 import { Draft } from 'immer';
 
 export function changeTurnAndPoints(

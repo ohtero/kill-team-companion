@@ -1,4 +1,4 @@
-import { NormalizedMatchData } from '../../../types/databaseTypes';
+import { NormalizedMatchData } from '../../../types/data';
 
 // * Current version does not utilize this type guard. Kept intact if it is needed in future. Remove if no use arises.
 

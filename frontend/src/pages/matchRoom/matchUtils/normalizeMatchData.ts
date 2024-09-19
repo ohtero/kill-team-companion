@@ -1,7 +1,4 @@
-import {
-  RawMatchData,
-  NormalizedMatchData
-} from '../../../types/databaseTypes';
+import { RawMatchData, NormalizedMatchData } from '../../../types/data';
 
 export function normalizeMatchData(
   matchData: RawMatchData
