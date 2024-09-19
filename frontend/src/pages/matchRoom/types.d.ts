@@ -63,7 +63,7 @@ interface TurnIndicatorProps {
   currentTurn: number;
 }
 
-export type TabName = 'details' | 'counters' | 'mission';
+export type TabName = 'details' | 'counters' | 'tac ops';
 
 interface MatchContext {
   matchData: NormalizedMatchData;
