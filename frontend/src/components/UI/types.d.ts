@@ -3,7 +3,7 @@ interface GenericProps {
 }
 
 interface FormProps extends GenericProps {
-  onSubmit: () => void | Promise<void>;
+  onSubmit?: () => void | Promise<void>;
 }
 
 interface ErrorProps extends GenericProps {
