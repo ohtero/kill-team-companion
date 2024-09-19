@@ -2,7 +2,8 @@ import { Request, Response } from 'express';
 import {
   insertNewMatchData,
   addPlayerToMatch,
-  getMatchDataFromDb
+  getMatchDataFromDb,
+  getTacOpsFromDb
 } from '../../services/matchServices.js';
 import { AppError } from '../../classExtensions/errorExtension.js';
 
@@ -72,10 +73,13 @@ async function addNewPlayer(req: Request, res: Response): Promise<void> {
   }
 }
 
-export {
-  createMatch,
-  getMatchData,
-  addNewPlayer
-  // modifyPlayerPoints,
-  // modifyTurnCount
-};
+async function getTacOps(req: Request, res: Response): Promise<void> {
+  try {
+    const dbResponse = await getTacOpsFromDb(req);
+    res.status(200).json(dbResponse);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export { createMatch, getMatchData, addNewPlayer, getTacOps };

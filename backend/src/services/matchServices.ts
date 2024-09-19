@@ -187,3 +187,21 @@ export async function updateTurnCountToDb(
     client?.release();
   }
 }
+
+export async function getTacOpsFromDb(req: Request) {
+  const client = req.dbClient;
+  try {
+    const data = await client?.query('SELECT * FROM tacops');
+    let rows: unknown[];
+    if (data) {
+      rows = data.rows;
+      return rows;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.log(error);
+  } finally {
+    client?.release();
+  }
+}
