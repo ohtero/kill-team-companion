@@ -13,6 +13,9 @@ COPY . .
 RUN npm run type-check
 RUN npm run build
 
+FROM base AS test
+COPY . .
+
 FROM node:lts-alpine AS prod
 WORKDIR /app/client 
 COPY --from=build /app/client/dist ./dist

@@ -1,0 +1,8 @@
+services:
+  frontend_test:
+    image: client_test
+    container_name: client_test
+    build:
+      context: ./frontend
+      target: test
+    command: 'npm run test'
