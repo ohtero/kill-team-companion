@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
-export function ErrorMsg({ children, $centered }: ErrorProps) {
-  return <ErrorMessage $centered={$centered}>{children}</ErrorMessage>;
+export function ErrorMsg({ children, errorOwner, $centered }: ErrorProps) {
+  return (
+    <ErrorMessage role="alert" data-testid={errorOwner} $centered={$centered}>
+      {children}
+    </ErrorMessage>
+  );
 }
 
 const ErrorMessage = styled.span<{ $centered?: boolean }>`
