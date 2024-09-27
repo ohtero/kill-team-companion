@@ -7,6 +7,7 @@ import dotenv from 'dotenv';
 import { matchRouter } from './API/routers/matchRouter.js';
 import connectToDb from './API/middleware/connectToDb.js';
 import { socketListeners } from './webSockets/matchListeners.js';
+import { authRouter } from './API/routers/authRouter.js';
 
 const app = express();
 const server = createServer(app);
@@ -49,5 +50,6 @@ const corsOptions = {
 app.options('*', cors());
 app.use(cors(corsOptions));
 app.use('/match', connectToDb as RequestHandler, matchRouter);
+app.use('/auth', connectToDb as RequestHandler, authRouter);
 
 server.listen(port, () => console.log(`Listening on port ${port}`));
