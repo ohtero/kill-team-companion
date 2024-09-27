@@ -89,10 +89,14 @@ export function CreateMatchForm() {
           type="text"
           {...register('matchName', {
             required: { value: true, message: 'Match name is required.' },
-            maxLength: { value: 50, message: 'Match name is to long.' },
+            maxLength: { value: 50, message: 'Match name is too long.' },
+            minLength: { value: 1, message: 'Match name cannot be empty.' },
+            pattern: {
+              value: /[a-zA-Z0-9\s]/,
+              message: 'Username cannot contain special characters'
+            },
             validate: (value) =>
-              value.trim().length > 0 ||
-              "Match name can't be only empty spaces."
+              value.trim().length > 0 || 'Match name cannot be empty.'
           })}
           name="matchName"
           id="matchName"
