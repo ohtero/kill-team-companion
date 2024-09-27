@@ -85,10 +85,6 @@ const MatchCreate = styled.section`
     background: HSLA(${(props) => props.theme.colors.primary}, 0.5);
   }
 
-  #matchName {
-    font-size: 1.5rem;
-  }
-
   #mission {
     font-size: 1.25rem;
   }
