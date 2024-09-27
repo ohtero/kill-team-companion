@@ -17,6 +17,5 @@
     "types": ["vitest/jsdom", "vitest/globals", "@testing-library/jest-dom"],
     "skipLibCheck": true
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "./src/tests"]
+  "include": ["src/**/*"]
 }
