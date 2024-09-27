@@ -8,6 +8,7 @@ interface FormProps extends GenericProps {
 
 interface ErrorProps extends GenericProps {
   $centered?: boolean;
+  errorOwner: string;
 }
 
 interface ContentSectionProps extends GenericProps {
