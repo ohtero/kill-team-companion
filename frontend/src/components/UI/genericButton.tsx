@@ -25,8 +25,8 @@ export function GenericButton({
 const Button = styled.button<{ $orange?: boolean }>`
   flex: 1;
   min-width: 200px;
-  font-size: 1.1rem;
-  padding: 16px;
+  font-size: 1rem;
+  padding: 12px;
   font-weight: 800;
   letter-spacing: 1px;
   border: none;
