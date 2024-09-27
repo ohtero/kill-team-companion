@@ -21,7 +21,7 @@ export function DesktopNavigation() {
         </section>
         <section className="headerSection accountLinks">
           <li>
-            <TopNavLink to={''}>Sign In</TopNavLink>
+            <TopNavLink to={'/login'}>Sign In</TopNavLink>
           </li>
         </section>
       </ul>

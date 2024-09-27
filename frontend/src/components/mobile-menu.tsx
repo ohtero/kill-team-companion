@@ -32,7 +32,7 @@ export function MobileMenu({ isVisible, hideMenu }: MenuProps) {
           </TopNavLink>
         </li>
         <li>
-          <TopNavLink color="dark" to={''} handleClick={hideMenu}>
+          <TopNavLink color="dark" to={'/login'} handleClick={hideMenu}>
             Sign In
           </TopNavLink>
         </li>
