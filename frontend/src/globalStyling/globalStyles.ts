@@ -30,7 +30,7 @@ h2, h3, h4 {
 }
 
 input, button, select {
-  font-size: 1.5rem;
+  font-size: 1rem;
   padding: 10px;
 }
 
@@ -43,11 +43,9 @@ label {
   color: white;
 }
 
-input[type="text"] {
-  font-size: 1.5rem;
-  padding: 8px 0;
+input[type="text"], input[type="password"] {
   padding-left: 8px;
   // background: HSLA(${(props) => props.theme.colors.secondary}, 0.75);
-  border: 4px solid HSLA(${(props) => props.theme.colors.primary}, 0.5);
+  border: 2px solid HSLA(${(props) => props.theme.colors.primary}, 0.5);
 }
 `;
