@@ -25,7 +25,7 @@ export async function getMatchDataFromDb(
 
 export async function insertNewMatchData(req: Request): Promise<string | null> {
   const client = req.dbClient;
-  const matchName: string = req.body.matchName;
+  const { matchName } = req.body;
   const matchId: string = nanoid(10);
   const query = {
     text: 'INSERT INTO matches (match_id, match_name) VALUES ($1, $2)',
