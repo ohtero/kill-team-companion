@@ -3,15 +3,10 @@ import { fireEvent, render, screen } from '../testUtils';
 import {
   MatchDataProvider,
   MatchDataContext
-} from '../../pages/matchRoom/context/matchContext';
-import { MatchCounters } from '../../pages/matchRoom/features/matchCounters';
+} from '../../src/pages/matchRoom/context/matchContext';
 import { mockMatchDataContextValue } from '../mocks/matchData';
-import { Counter } from '../../pages/matchRoom/components/counter';
-
-/**
- * * Turn counter and player point counters interact with each other through MatchCounters parent component. This file feels a bit bloated though, so see if it should be broken down into separate files.
- */
-
+import { MatchCounters } from '../../src/pages/matchRoom/features/matchCounters';
+import { Counter } from '../../src/pages/matchRoom/components/counter';
 describe('Match counters', () => {
   describe('Turn counter', () => {
     describe('Turn counter behavior with mocked context', () => {
@@ -84,15 +79,15 @@ describe('Match counters', () => {
         });
 
         expect(turn1Indicator).toHaveStyle(
-          'border: 4px solid HSLA$(${props.theme.colors.tertiary})'
+          'border: 3px solid HSLA$(${props.theme.colors.tertiary})'
         );
-        expect(turn2Indicator).toHaveStyle('border: 4px solid transparent');
+        expect(turn2Indicator).toHaveStyle('border: 3px solid transparent');
 
         fireEvent.click(increaseTurnBtn);
 
-        expect(turn1Indicator).toHaveStyle('border: 4px solid transparent');
+        expect(turn1Indicator).toHaveStyle('border: 3px solid transparent');
         expect(turn2Indicator).toHaveStyle(
-          'border: 4px solid HSLA$(${props.theme.colors.tertiary})'
+          'border: 3px solid HSLA$(${props.theme.colors.tertiary})'
         );
       });
     });
@@ -210,9 +205,58 @@ describe('Match counters', () => {
         expect(subtractPointsFn).toHaveBeenCalledWith(1, 'cp', 'subtract');
       });
 
-      it('should NOT  call the subtract function if point value is 0', () => {
+      it('points should not go to negative if the point value is 0 when subtract point is pressed', () => {
         render(
-          <MatchDataContext.Provider value={mockMatchDataContextValue}>
+          <MatchDataContext.Provider
+            value={{
+              matchData: {
+                matchId: '',
+                matchName: '',
+                missionId: NaN,
+                active: false,
+                date: '',
+                turningPoint: 1,
+                players: {
+                  player1: {
+                    id: '',
+                    name: '',
+                    cp: 0,
+                    vp: 0
+                  },
+                  player2: {
+                    id: '',
+                    name: '',
+                    cp: 3,
+                    vp: 0
+                  },
+                  player3: {
+                    id: '',
+                    name: '',
+                    cp: 3,
+                    vp: 0
+                  },
+                  player4: {
+                    id: '',
+                    name: '',
+                    cp: 3,
+                    vp: 0
+                  }
+                },
+                winner: {
+                  id: '',
+                  name: ''
+                },
+                draw: false
+              },
+              updateMatchData: vi.fn(),
+              updateSocket: vi.fn(),
+              modifyPlayerPoints: vi.fn(),
+              modifyTurnCount: vi.fn(),
+              updatePlayerPoints: vi.fn(),
+              updateTurnCount: vi.fn(),
+              updatePlayerName: vi.fn()
+            }}
+          >
             <Counter points={0} playerIndex={1} pointType="cp" />
           </MatchDataContext.Provider>
         );
@@ -267,7 +311,7 @@ describe('Match counters', () => {
         );
       });
 
-      it('renders nameplates, Command, and Victory Point counters for each player that has a name supplied', async () => {
+      it('renders nameplates, Command, and Victory Point counters for each player that has a name supplied', () => {
         expect(screen.getByText('player1')).toBeInTheDocument();
         expect(screen.getByText('player2')).toBeInTheDocument();
         expect(screen.getByText('player3')).toBeInTheDocument();
@@ -304,7 +348,6 @@ describe('Match counters', () => {
           name: 'subtract vp from player1'
         });
 
-        name: 'subtract vp from player1';
         expect(screen.getByRole('player1cp')).toHaveTextContent('3');
         expect(screen.getByRole('player1vp')).toHaveTextContent('0');
 

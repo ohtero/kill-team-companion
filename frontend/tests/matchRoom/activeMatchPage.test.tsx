@@ -1,7 +1,7 @@
 import { render, screen } from '../testUtils';
-import { MatchEntry } from '../../pages/matchRoom/features/matchEntry';
+import { MatchEntry } from '../../src/pages/matchRoom/features/matchEntry';
 import { mockMatchData } from '../mocks/matchData';
-import { MatchFeaturesView } from '../../pages/matchRoom/components/matchFeaturesView';
+import { MatchFeaturesView } from '../../src/pages/matchRoom/components/matchFeaturesView';
 
 describe('Main container for an active match screen', () => {
   it('should render match entry if player was not found in current match', () => {

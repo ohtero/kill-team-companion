@@ -1,8 +1,8 @@
 import { it, expect, describe } from 'vitest';
 import { screen, render, fireEvent, waitFor } from '../testUtils';
-import { NameInputForm } from '../../pages/matchRoom/components/nameInputForm';
+import { NameInputForm } from '../../src/pages/matchRoom/components/nameInputForm';
 import { SubmitHandler } from 'react-hook-form';
-import { MatchEntryFormInput } from '../../pages/matchRoom/types';
+import { MatchEntryFormInput } from '../../src/pages/matchRoom/types';
 
 describe('Display name input form', () => {
   it('should call the onSUbmit function on successful validation', async () => {

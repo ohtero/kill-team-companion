@@ -1,8 +1,7 @@
 import { it, expect, describe } from 'vitest';
 import { screen, render } from '../testUtils';
-import { MatchDataProvider } from '../../pages/matchRoom/context/matchContext';
-import { MatchDetails } from '../../pages/matchRoom/features/matchDetails';
-
+import { MatchDataProvider } from '../../src/pages/matchRoom/context/matchContext';
+import { MatchDetails } from '../../src/pages/matchRoom/features/matchDetails';
 describe('Match details', () => {
   beforeEach(() => {
     render(

@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { render, RenderOptions } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
-import { theme } from '../globalStyling/appTheme';
+import { theme } from '../src/globalStyling/appTheme';
 import { MemoryRouter } from 'react-router-dom';
 
 const AllProviders = ({ children }: { children: React.ReactNode }) => {

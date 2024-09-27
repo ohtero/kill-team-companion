@@ -1,6 +1,6 @@
 import { it } from 'vitest';
 import { fireEvent, render, screen } from '../testUtils';
-import { MatchFeaturesView } from '../../pages/matchRoom/components/matchFeaturesView';
+import { MatchFeaturesView } from '../../src/pages/matchRoom/components/matchFeaturesView';
 
 describe('Match feature view', () => {
   it('should render match details when match view is opened for the first time', () => {
