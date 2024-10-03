@@ -1,7 +1,8 @@
 {
+  "extends": "./tsconfig.paths.json",
   "compilerOptions": {
-    // "module": "ESNext",
-    // "moduleResolution": "Node16",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "outDir": "dist",
     "allowSyntheticDefaultImports": true,
     "strict": true,
@@ -9,6 +10,6 @@
     "strictNullChecks": true,
     "esModuleInterop": true
   },
-  "extends": ["./tsconfig.paths.json"],
-  "include": ["src/**/*.ts", "tests/**/*.ts"]
+  "include": ["./src/**/*.ts"],
+  "exclude": ["node_modules"]
 }
