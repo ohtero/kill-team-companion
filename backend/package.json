@@ -4,7 +4,7 @@
   "description": "Backend for Kill Team Companion",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "dev": "tsx watch ./src/index.ts",
     "build": "tsc",
     "start": "node ./dist/index.js"
@@ -23,11 +23,15 @@
     "socket.io": "^4.7.5"
   },
   "devDependencies": {
+    "@jest/globals": "^29.7.0",
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.13",
     "@types/node": "^20.12.7",
     "@types/pg": "^8.11.5",
     "eslint": "^9.0.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
     "tsx": "^4.7.2",
     "typescript": "^5.5.4"
   }
