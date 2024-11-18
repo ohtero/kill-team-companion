@@ -6,9 +6,11 @@ import {
 } from './utils/authUtils.js';
 import { AppError } from '../classExtensions/errorExtension.js';
 
-export async function insertUserToDb(req: Request): Promise<string | AppError> {
-  const client = req.dbClient;
-  const { registrationData } = req.body;
+export async function insertUserToDb(
+  dbClient: Request['dbClient'],
+  registrationData: Request['body']['registrationData']
+): Promise<string | AppError> {
+  const client = dbClient;
   try {
     const hashedPassword = await hashPassword(registrationData.password);
     const validInputs = validateRegistrationInputs(registrationData);
@@ -26,14 +28,9 @@ export async function insertUserToDb(req: Request): Promise<string | AppError> {
       ]
     };
     if (!validInputs) {
-      console.log('🚀 ~ insertUserToDb ~ validInputs:', validInputs);
       return new AppError('validationError');
     }
     if (!usernameAvailable) {
-      console.log(
-        '🚀 ~ insertUserToDb ~ usernameAvailable:',
-        usernameAvailable
-      );
       return new AppError('duplicateError');
     }
     await client?.query(queryStr);

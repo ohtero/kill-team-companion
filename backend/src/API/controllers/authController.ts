@@ -4,7 +4,10 @@ import { AppError } from '../../classExtensions/errorExtension.js';
 
 export async function registerUser(req: Request, res: Response): Promise<void> {
   try {
-    const dbResponse = await insertUserToDb(req);
+    const dbResponse = await insertUserToDb(
+      req.dbClient,
+      req.body.registrationData
+    );
     if (dbResponse instanceof AppError) {
       res.status(400).json('Invalid input or action.');
     } else {
