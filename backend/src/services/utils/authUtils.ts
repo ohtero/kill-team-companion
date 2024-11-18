@@ -39,6 +39,8 @@ export async function checkUsernameAvailability(
       error
     );
     throw new AppError('internalError');
+  } finally {
+    client?.release();
   }
 }
 
