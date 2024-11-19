@@ -112,7 +112,7 @@ export async function addPlayerToMatch(
 export async function modifyPointsInDb(
   matchId: string,
   playerIndex: number,
-  point: string,
+  pointType: string,
   type: string
 ): Promise<object | null> {
   const client = await connectToPool();
@@ -136,7 +136,7 @@ export async function modifyPointsInDb(
     const playerPointData = {
       playerIndex: playerIndex,
       newPoints: pointData,
-      pointType: point
+      pointType: pointType
     };
     return playerPointData;
   } catch (error) {
