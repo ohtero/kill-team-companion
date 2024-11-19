@@ -16,10 +16,18 @@ export interface RawMatchData {
   player2_cp: number;
   player3_cp: number;
   player4_cp: number;
-  player1_vp: number;
-  player2_vp: number;
-  player3_vp: number;
-  player4_vp: number;
+  player1_crit_op: number;
+  player2_crit_op: number;
+  player3_crit_op: number;
+  player4_crit_op: number;
+  player1_tac_op: number;
+  player2_tac_op: number;
+  player3_tac_op: number;
+  player4_tac_op: number;
+  player1_kill_op: number;
+  player2_kill_op: number;
+  player3_kill_op: number;
+  player4_kill_op: number;
   turning_point: number;
   winner_id: string;
   winner_name: string;
@@ -34,10 +42,38 @@ export interface NormalizedMatchData {
   date: string; // Check if Date type is needed later
   turningPoint: number;
   players: {
-    player1: { id: string; name: string; cp: number; vp: number };
-    player2: { id: string; name: string; cp: number; vp: number };
-    player3: { id: string; name: string; cp: number; vp: number };
-    player4: { id: string; name: string; cp: number; vp: number };
+    player1: {
+      id: string;
+      name: string;
+      cp: number;
+      critOp: number;
+      tacOp: number;
+      killOp: number;
+    };
+    player2: {
+      id: string;
+      name: string;
+      cp: number;
+      critOp: number;
+      tacOp: number;
+      killOp: number;
+    };
+    player3: {
+      id: string;
+      name: string;
+      cp: number;
+      critOp: number;
+      tacOp: number;
+      killOp: number;
+    };
+    player4: {
+      id: string;
+      name: string;
+      cp: number;
+      critOp: number;
+      tacOp: number;
+      killOp: number;
+    };
   };
   winner: {
     id: string;
