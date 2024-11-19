@@ -19,19 +19,27 @@ export function normalizeMatchData(
     player1_id,
     player1_name,
     player1_cp,
-    player1_vp,
+    player1_crit_op,
+    player1_tac_op,
+    player1_kill_op,
     player2_id,
     player2_name,
     player2_cp,
-    player2_vp,
+    player2_crit_op,
+    player2_tac_op,
+    player2_kill_op,
     player3_id,
     player3_name,
     player3_cp,
-    player3_vp,
+    player3_crit_op,
+    player3_tac_op,
+    player3_kill_op,
     player4_id,
     player4_name,
     player4_cp,
-    player4_vp
+    player4_crit_op,
+    player4_tac_op,
+    player4_kill_op
   } = matchData;
 
   /**
@@ -50,25 +58,33 @@ export function normalizeMatchData(
         id: player1_id,
         name: player1_name,
         cp: player1_cp,
-        vp: player1_vp
+        critOp: player1_crit_op,
+        tacOp: player1_tac_op,
+        killOp: player1_kill_op
       },
       player2: {
         id: player2_id,
         name: player2_name,
         cp: player2_cp,
-        vp: player2_vp
+        critOp: player2_crit_op,
+        tacOp: player2_tac_op,
+        killOp: player2_kill_op
       },
       player3: {
         id: player3_id,
         name: player3_name,
         cp: player3_cp,
-        vp: player3_vp
+        critOp: player3_crit_op,
+        tacOp: player3_tac_op,
+        killOp: player3_kill_op
       },
       player4: {
         id: player4_id,
         name: player4_name,
         cp: player4_cp,
-        vp: player4_vp
+        critOp: player4_crit_op,
+        tacOp: player4_tac_op,
+        killOp: player4_kill_op
       }
     },
     winner: {
