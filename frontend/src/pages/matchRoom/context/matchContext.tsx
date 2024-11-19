@@ -2,7 +2,7 @@ import { createContext, useContext, useState } from 'react';
 import { Socket } from 'socket.io-client';
 import { useImmer } from 'use-immer';
 import { NormalizedMatchData } from '../../../types/databaseTypes';
-import { MatchContext } from '../types';
+import { MatchContext, PointType } from '../types';
 import { changeTurnAndPoints } from './matchContextUtils';
 
 const defaultMatchData: NormalizedMatchData = {
@@ -17,25 +17,33 @@ const defaultMatchData: NormalizedMatchData = {
       id: '',
       name: 'player1',
       cp: 3,
-      vp: 0
+      critOp: 0,
+      tacOp: 0,
+      killOp: 0
     },
     player2: {
       id: '',
       name: 'player2',
       cp: 3,
-      vp: 0
+      critOp: 0,
+      tacOp: 0,
+      killOp: 0
     },
     player3: {
       id: '',
       name: 'player3',
       cp: 3,
-      vp: 0
+      critOp: 0,
+      tacOp: 0,
+      killOp: 0
     },
     player4: {
       id: '',
       name: 'player4',
       cp: 3,
-      vp: 0
+      critOp: 0,
+      tacOp: 0,
+      killOp: 0
     }
   },
   winner: {
