@@ -116,7 +116,16 @@ export async function modifyPointsInDb(
   type: string
 ): Promise<object | null> {
   const client = await connectToPool();
-  const playerPointCol = `player${playerIndex + 1}_${point}`;
+  const pointString =
+    pointType === 'cp'
+      ? 'cp'
+      : pointType === 'critOp'
+        ? 'crit_op'
+        : pointType === 'tacOp'
+          ? 'tac_op'
+          : 'kill_op';
+
+  const playerPointCol = `player${playerIndex + 1}_${pointString}`;
   const text =
     type === 'add'
       ? `UPDATE matches SET ${playerPointCol} = ${playerPointCol} + 1 WHERE match_id = ($1) RETURNING ${playerPointCol}`
