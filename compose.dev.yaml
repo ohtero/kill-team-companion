@@ -41,6 +41,15 @@ services:
       - '3000:3000'
     env_file:
       - './.env.dev'
+  db:
+    environment:
+      - POSTGRES_HOST=192.168.200.2
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=ktc
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+    ports:
+      - '5432:5432'
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin4
