@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import io, { Socket } from 'socket.io-client';
 import { useMatchContext } from '../context/matchContext';
+import { PointType } from '../types';
 
 export function useMatchWebSocket() {
   const socketRef = useRef<Socket>();
@@ -18,7 +19,7 @@ export function useMatchWebSocket() {
   function handlePlayerPointsUpdate(data: {
     playerIndex: number;
     newPoints: number;
-    pointType: 'vp' | 'cp';
+    pointType: PointType;
   }) {
     socketRef.current &&
       updatePlayerPoints(data.playerIndex, data.newPoints, data.pointType);

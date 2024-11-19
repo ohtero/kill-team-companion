@@ -93,7 +93,7 @@ export function MatchDataProvider({ children }: GenericProps) {
 
   function modifyPlayerPoints(
     playerIndex: number,
-    pointType: 'vp' | 'cp',
+    pointType: PointType,
     modType: 'add' | 'subtract'
   ) {
     const player =
@@ -118,7 +118,7 @@ export function MatchDataProvider({ children }: GenericProps) {
   function updatePlayerPoints(
     playerIndex: number,
     newPoints: number,
-    pointType: 'vp' | 'cp'
+    pointType: PointType
   ) {
     const player =
       `player${playerIndex + 1}` as keyof NormalizedMatchData['players'];

@@ -41,8 +41,10 @@ interface TabNavProps {
   updateActiveTab: (tabName: TabName) => void;
 }
 
+type PointType = 'cp' | 'critOp' | 'tacOp' | 'killOp';
+
 interface PointModifyButtonProps {
-  pointType: 'cp' | 'vp';
+  pointType: PointType;
   playerIndex: number;
   children: string;
   operation: 'add' | 'subtract';
@@ -51,7 +53,7 @@ interface PointModifyButtonProps {
 interface PlayerPoint {
   points: number;
   playerIndex: number;
-  pointType: 'cp' | 'vp';
+  pointType: PointType;
 }
 
 interface TurnPlayerPoint extends MatchFeatureProps {
@@ -72,13 +74,13 @@ interface MatchContext {
   modifyTurnCount: (modType: 'add' | 'subtract') => void;
   modifyPlayerPoints: (
     playerIndex: number,
-    pointType: 'vp' | 'cp',
+    pointType: PointType,
     modType: 'add' | 'subtract'
   ) => void;
   updatePlayerPoints: (
     playerIndex: number,
     newPoints: number,
-    pointType: 'cp' | 'vp'
+    pointType: PointType
   ) => void;
   updateTurnCount: (modType: 'add' | 'subtract') => void;
   updatePlayerName: (name: string) => void;
